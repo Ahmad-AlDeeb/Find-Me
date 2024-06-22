@@ -43,9 +43,10 @@
 	- `first_name`.
 	- `last_name`.
 	- `email`.
+ 	- `password`. 
 	- `phone`.
 	- `state`.
-	- `city`
+	- `city`.
 - `child`:
 	- `id`.
 	- `user_id`.
