@@ -26,10 +26,9 @@
 	   - Upload image.
    - **Success page**.
    - **Failure page**.
-
 # 🔵Endpoints
-- Login page: `GET /login`.
-- Logging in: `POST /login`.
+- Login page: `GET /signin`.
+- Logging in: `POST /signin`.
 - Create account page: `GET /signup`.
 - Creating account: `POST /signup`.
 - Home page: `GET /`.
