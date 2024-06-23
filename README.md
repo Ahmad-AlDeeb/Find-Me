@@ -35,6 +35,7 @@
 - Report page: `GET /report`.
 - Send report details: `POST /report`.
 - Result page: `GET /result`.
+- Send user answer: `POST /result`.
 # 🟡Models
 - `user`:
 	- `id`.
