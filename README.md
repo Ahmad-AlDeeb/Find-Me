@@ -32,10 +32,8 @@
 - Create account page: `GET /register`.
 - Creating account: `POST /register`.
 - Home page: `GET /`.
-- Report missing page: `GET /missing`.
-- Send missing details: `POST /missing`.
-- Report found page: `GET /found`.
-- Send found details: `POST /found`.
+- Report page: `GET /report`.
+- Send report details: `POST /report`.
 - Result page: `GET /result`.
 # 🟡Models
 - `user`:
