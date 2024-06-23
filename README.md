@@ -27,10 +27,10 @@
    - **Success page**.
    - **Failure page**.
 # 🔵Endpoints
-- Login page: `GET /signin`.
-- Logging in: `POST /signin`.
-- Create account page: `GET /signup`.
-- Creating account: `POST /signup`.
+- Login page: `GET /login`.
+- Logging in: `POST /login`.
+- Create account page: `GET /register`.
+- Creating account: `POST /register`.
 - Home page: `GET /`.
 - Report missing page: `GET /missing`.
 - Send missing details: `POST /missing`.
@@ -53,3 +53,9 @@
 	- `img_url`.
 	- `status`.
 # 💀 Problems
+- Email Confirmation
+- Deploying
+# 🤔 Extra
+- About page
+- Resting password
+- Changing user details
