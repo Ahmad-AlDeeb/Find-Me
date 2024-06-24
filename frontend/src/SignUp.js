@@ -44,8 +44,9 @@ export default function SignUp() {
 
     if (Object.keys(newErrors).length === 0) {
       try {
-        let res = await axios.post("http://127.0.0.1:8000/api/register", {
-          name: `${formData.Fname} ${formData.Lname}`,
+        let res = await axios.post("http://127.0.0.1:8000/register/", {
+          fname: formData.Fname,
+          lname: formData.Lname,
           email: formData.email,
           password: formData.password,
           password_confirmation: formData.repassword,

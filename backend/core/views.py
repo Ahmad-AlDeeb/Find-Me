@@ -1,6 +1,9 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 from core.models import User
 
@@ -10,24 +13,24 @@ def home(request):
     return render(request, 'home.html')
 
 
+@csrf_exempt
 def register_user(request):
     if request.method == "POST":
-        email = request.POST['email']
-        pass1 = request.POST['pass1']
-        pass2 = request.POST['pass2']
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        phone = request.POST['phone']
-        state = request.POST['state']
-        city = request.POST['city']
+        data = json.loads(request.body)
+        email = data.get('email')
+        pass1 = data.get('password')
+        pass2 = data.get('password_confirmation')
+        fname = data.get('fname')
+        lname = data.get('lname')
+        phone = data.get('phone')
+        state = data.get('state')
+        city = data.get('city')
 
         if User.objects.filter(email=email).exists():
-            messages.error(request, "Email Already Registered!!")
-            return redirect('register')
+            return JsonResponse({'error': 'Email Already Registered!!'}, status=400)
 
         if pass1 != pass2:
-            messages.error(request, "Passwords didn't matched!!")
-            return redirect('register')
+            return JsonResponse({'error': "Passwords didn't match!!"}, status=400)
 
         new_user = User.objects.create_user(email, pass1)
         new_user.first_name = fname
@@ -40,30 +43,25 @@ def register_user(request):
         new_user.is_active = True
 
         new_user.save()
-        # messages.success(request, "Your Account has been created succesfully!! Please check your email to confirm your email address in order to activate your account.")
-        messages.success(request,"Your Account has been created succesfully!!")
-
-        return redirect('login')
-
+        # Email Confirmation
+        return JsonResponse({'success': 'Your Account has been created successfully!!'}, status=200)
     return render(request, 'register.html')
 
 
+@csrf_exempt
 def login_user(request):
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
+        data = json.loads(request.body)
+        email = data.get('email')
+        password = data.get('password')
 
         user = authenticate(email=email, password=password)
 
         if user is not None:
             login(request, user)
-            fname = user.first_name
-            messages.success(request, "Logged In Sucessfully!!")
-            return render(request, "home.html", {"fname": fname})
+            return JsonResponse({'success': 'User logged in successfully'}, status=200)
         else:
-            messages.error(request, "Bad Credentials!!")
-            return redirect('login')
-
+            return JsonResponse({'error': 'Invalid email or password'}, status=400)
     return render(request, 'login.html')
 
 

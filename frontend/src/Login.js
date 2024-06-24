@@ -20,7 +20,7 @@ export default function Login() {
     } else flag = true;
     try {
       if (flag) {
-        let res = await axios.post("http://127.0.0.1:8000/api/login", {
+        let res = await axios.post("http://127.0.0.1:8000/login/", {
           email: email,
           password: password,
         });
@@ -80,7 +80,7 @@ export default function Login() {
           {password.length < 8 && accept && (
             <p className="error">pass must be more than 8 char</p>
           )}
-          {emailer === 401 && accept && (
+          {emailer === 400 && accept && (
             <p className="error"> email or password invaild</p>
           )}
           <div className="btn">
