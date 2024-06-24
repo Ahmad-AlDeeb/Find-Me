@@ -9,10 +9,6 @@ from core.models import User
 
 
 # Create your views here.
-def home(request):
-    return render(request, 'home.html')
-
-
 @csrf_exempt
 def register_user(request):
     if request.method == "POST":
@@ -45,7 +41,6 @@ def register_user(request):
         new_user.save()
         # Email Confirmation
         return JsonResponse({'success': 'Your Account has been created successfully!!'}, status=200)
-    return render(request, 'register.html')
 
 
 @csrf_exempt
@@ -58,11 +53,11 @@ def login_user(request):
         user = authenticate(email=email, password=password)
 
         if user is not None:
+            print("we got here!")
             login(request, user)
             return JsonResponse({'success': 'User logged in successfully'}, status=200)
         else:
             return JsonResponse({'error': 'Invalid email or password'}, status=400)
-    return render(request, 'login.html')
 
 
 def logout_user(request):
