@@ -1,0 +1,56 @@
+/* Center content styles */
+.parent-home {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-home {
+  margin-bottom: 50px;
+  margin-top: 90px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.buttons-home {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  gap: 20px;
+}
+
+.blue-button,
+.black-button {
+  width: 200px; /* Width of the buttons */
+  height: 200px; /* Height of the buttons to make them square */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 20px;
+  font-weight: bold; /* Make the font bold */
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+
+  /* Center the text inside the buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blue-button {
+  background-color: #c10c99;
+}
+
+.blue-button:hover {
+  background-color: #85086a;
+}
+
+.black-button {
+  background-color: #c10c99;
+}
+
+.black-button:hover {
+  background-color: #85086a;
+}
