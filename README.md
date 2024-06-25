@@ -28,6 +28,10 @@
 - Send report details: `POST /report`.
 - Result page: `GET /result`.
 - Send user answer: `POST /result`.
+- Get all users: `GET /users`.
+- Get one user: `GET /users/<id>`.
+- Get all children: `GET /children`
+- Get one child: `GET /children/<id>`
 # 🟡Models
 - `user`:
 	- `id`.
