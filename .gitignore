@@ -55,3 +55,48 @@ build/
 *.env
 Dockerfile
 docker-compose.yml
+
+# FRONTEND (REACT) files
+# Dependency directories
+frontend/node_modules
+
+# Build output directories
+frontend/build
+frontend/dist
+
+# dotenv environment variable files
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Log files
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Operating system files
+frontend/.DS_Store
+frontend/Thumbs.db
+
+# Editor/IDE directories and files
+.idea/
+frontend/.idea
+frontend/.vscode/
+frontend/*.sublime-workspace
+
+# Coverage directory (if using testing tools like Jest)
+frontend/coverage/
+
+# Optional npm cache directory
+frontend/.npm
+
+# Optional eslint cache
+frontend/.eslintcache
+
+# Optional stylelint cache
+frontend/.stylelintcache
+
+# Optional flow type
+frontend/.flowconfig

@@ -1,11 +1,3 @@
-# ⚡ Starting Up
-1. Clone the repository
-2. Create virutal environment by running  `python -m venv venv`
-3. Activate virtual environment by running `venv/Scripts/activate`
-4. Install the project dependencies by running: `pip install django`
-5. Make Migrations by running `python manage.py makemigrations`
-6. Apply Migrations by running `python manage.py migrate`
-7. Run the server using command `python manage.py runserver`
 # 👤 User Story 
 ## As `Parent` Who Lost My Child I Want To
 - Upload my child photo.
@@ -36,6 +28,10 @@
 - Send report details: `POST /report`.
 - Result page: `GET /result`.
 - Send user answer: `POST /result`.
+- Get all users: `GET /users`.
+- Get one user: `GET /users/<id>`.
+- Get all children: `GET /children`
+- Get one child: `GET /children/<id>`
 # 🟡Models
 - `user`:
 	- `id`.
