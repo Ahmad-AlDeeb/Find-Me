@@ -2,6 +2,7 @@ import faker
 from django.core.management.base import BaseCommand
 from core.models import User
 
+
 class Command(BaseCommand):
     help = 'Seeds the database with initial data.'
 
