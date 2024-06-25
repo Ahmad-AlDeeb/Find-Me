@@ -1,11 +1,16 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.views import status
 import json
 
 from core.models import User
+from core.serializers import UserSerializer
 
 
 # Create your views here.
@@ -62,8 +67,19 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request, "Logged out Sucessfully!!")
+    messages.success(request, "Logged out Successfully!!")
     return redirect('/')
 
 
+@api_view()
+def user_list(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+@api_view()
+def user_detail(request, id):
+    user = get_object_or_404(User, pk=id)
+    serializer = UserSerializer(user)
+    return Response(serializer.data, status=status.HTTP_200_OK)
