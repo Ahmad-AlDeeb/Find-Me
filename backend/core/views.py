@@ -5,12 +5,14 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
-from rest_framework.views import status
+from rest_framework.views import status, APIView
 import json
 
-from .models import User
-from .serializers import UserSerializer
+from .models import User, Child
+from .serializers import UserSerializer, ChildSerializer
+from .kernel import main as compare_image
 
 
 # Create your views here.
@@ -83,3 +85,20 @@ def user_detail(request, id):
     user = get_object_or_404(User, pk=id)
     serializer = UserSerializer(user)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ChildUploadView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+
+    def post(self, request, *args, **kwargs):
+        child_serializer = ChildSerializer(data=request.data)
+        if child_serializer.is_valid():
+            child_image = request.FILES.get('image')
+            child_status = child_serializer.validated_data['status']
+
+            database_dir = '../media/lost_children' if child_status == 'F' else '../media/found_children'
+
+            most_similated_img = compare_image(child_image, database_dir)[0]
+
+            child_instance = get_object_or_404(Child, img=most_similated_img)
+            return child_instance.user
