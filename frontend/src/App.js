@@ -6,6 +6,7 @@ import Dash from "./Dash";
 import Users from "./Users";
 import Home from "./Home";
 import Found from "./Found";
+import Lost from "./Lost";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <Routes>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/found" element={<Found />}></Route>
+        <Route path="/lost" element={<Lost />}></Route>
         <Route path="about" element={<About />} />
         <Route path="/" element={<SignUp />} />
         <Route path="/register" element={<SignUp />}></Route>

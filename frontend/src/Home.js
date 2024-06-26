@@ -7,7 +7,7 @@ export default function Home() {
       <Header />
       <h2 className="title-home">Please choose from the options</h2>
       <div className="buttons-home">
-        <Link to="/found" className="blue-button">
+        <Link to="/lost" className="blue-button">
           Missing person
         </Link>
         <Link to="/found" className="black-button">
