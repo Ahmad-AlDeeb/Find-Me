@@ -54,3 +54,10 @@ class Child(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=STATE_CHOICES)
     is_found = models.BooleanField(default=False)
+
+    def delete(self, *args, **kwargs):
+        # Check if there is an image and if it exists on the filesystem
+        if self.img and os.path.isfile(self.img.path):
+            os.remove(self.img.path)
+        # Call the superclass delete method to delete the object from the database
+        super(Child, self).delete(*args, **kwargs)
