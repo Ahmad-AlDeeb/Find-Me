@@ -1,18 +1,25 @@
+import os
+
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
+from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import status, APIView
 import json
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from io import BytesIO
+from PIL import Image
 
 from .models import User, Child
 from .serializers import UserSerializer, ChildSerializer
-from .kernel import main as compare_image
+from .kernel import main as compare_faces
+from django.conf import settings
 
 
 # Create your views here.
@@ -87,18 +94,44 @@ def user_detail(request, id):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class ChildUploadView(APIView):
+class ChildReportView(generics.CreateAPIView):
     parser_classes = (MultiPartParser, FormParser)
+    serializer_class = ChildSerializer
 
-    def post(self, request, *args, **kwargs):
-        child_serializer = ChildSerializer(data=request.data)
-        if child_serializer.is_valid():
-            child_image = request.FILES.get('image')
-            child_status = child_serializer.validated_data['status']
+    def create(self, request, *args, **kwargs):
+        try:
+            uploaded_image = request.FILES.get('img')
+            child_status = request.data.get('status')
 
-            database_dir = '../media/lost_children' if child_status == 'F' else '../media/found_children'
+            sub_dirs = {'F': 'lost_children', 'L': 'found_children'}
+            database_dir = os.path.join(settings.MEDIA_ROOT, sub_dirs.get(child_status, ''))
 
-            most_similated_img = compare_image(child_image, database_dir)[0]
+            if not os.path.exists(database_dir):
+                return Response({"error": "Invalid status or directory does not exist."},
+                                status=status.HTTP_400_BAD_REQUEST)
 
-            child_instance = get_object_or_404(Child, img=most_similated_img)
-            return child_instance.user
+            result = compare_faces(uploaded_image, database_dir)
+
+            if not result:
+                return Response({"message": "No similar image found in database."}, status=status.HTTP_404_NOT_FOUND)
+
+            most_similar_filename = next(iter(result))
+
+            matching_children = Child.objects.filter(img__endswith=most_similar_filename)
+
+            if not matching_children.exists():
+                return Response({"message": "No matching children found."}, status=status.HTTP_404_NOT_FOUND)
+
+            users_info = []
+            for child in matching_children:
+                user_info = {
+                    "first_name": child.user.first_name,
+                    "last_name": child.user.last_name,
+                    "phone": child.user.phone  # Assuming phone is stored in a user profile model
+                }
+                users_info.append(user_info)
+
+            return Response({"users": users_info}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
