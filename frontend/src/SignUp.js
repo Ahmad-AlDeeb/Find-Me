@@ -56,7 +56,7 @@ export default function SignUp() {
         });
         if (res.status === 200) {
           window.localStorage.setItem("email", formData.email);
-          window.location.pathname = "/home";
+          window.location.pathname = "/login";
         }
       } catch (err) {
         setEmailer(err.response.status);

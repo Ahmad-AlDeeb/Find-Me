@@ -38,13 +38,12 @@ export default function Confirm() {
           throw new Error("Network response was not ok");
         }
         console.log("Answer submitted successfully");
-        // هنا يمكن إضافة إعادة توجيه أو رسالة تأكيد
-        // توجيه المستخدم إلى صفحة التفاصيل (parent or helper)
+        // (parent or helper)
       } catch (error) {
         console.error("There was a problem with your fetch operation:", error);
       }
     } else if (answer === "no") {
-      setShowSorryMessage(true); // تحديث الحالة لعرض رسالة "sorry"
+      setShowSorryMessage(true);
     }
   };
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import "./style.css";
 import "boxicons/css/boxicons.min.css";
 import Header from "./components/Header";
-import { Link, useNavigate } from "react-router-dom"; // استيراد useNavigate
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Report() {
   const inputFileRef = useRef(null);
@@ -11,7 +11,7 @@ export default function Report() {
   const [imgSrc, setImgSrc] = useState("");
   const [imgName, setImgName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate(); // الحصول على كائن navigate
+  const navigate = useNavigate();
 
   const handleSelectImageClick = () => {
     inputFileRef.current.click();
@@ -34,11 +34,15 @@ export default function Report() {
     formData.append("image", inputFileRef.current.files[0]);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "http://127.0.0.1:8000/report/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log("Image uploaded successfully:", response.data);
       alert("Image uploaded successfully!");
       navigate("/confirm");
@@ -85,7 +89,7 @@ export default function Report() {
           </button>
           <div className="btn">
             <button type="submit" disabled={isLoading}>
-              {isLoading ? "Uploading..." : "Share"}
+              {isLoading ? "Uploading..." : "Submit "}
             </button>
           </div>
         </form>
