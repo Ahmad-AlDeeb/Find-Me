@@ -4,6 +4,7 @@ import "./confirm.css";
 
 export default function Confirm() {
   const [image, setImage] = useState(null);
+  const [showSorryMessage, setShowSorryMessage] = useState(false);
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -24,26 +25,26 @@ export default function Confirm() {
   }, []);
 
   const handleAnswer = async (answer) => {
-    const url = `http://localhost:8000/result?answer=${answer}`;
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      console.log("Answer submitted successfully");
-      // هنا يمكن إضافة إعادة توجيه أو رسالة تأكيد
-      if (answer === "yes") {
+    if (answer === "yes") {
+      const url = `http://localhost:8000/result?answer=${answer}`;
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        console.log("Answer submitted successfully");
+        // هنا يمكن إضافة إعادة توجيه أو رسالة تأكيد
         // توجيه المستخدم إلى صفحة التفاصيل (parent or helper)
-      } else {
-        // عرض رسالة "sorry"
+      } catch (error) {
+        console.error("There was a problem with your fetch operation:", error);
       }
-    } catch (error) {
-      console.error("There was a problem with your fetch operation:", error);
+    } else if (answer === "no") {
+      setShowSorryMessage(true); // تحديث الحالة لعرض رسالة "sorry"
     }
   };
 
@@ -65,31 +66,37 @@ export default function Confirm() {
         <div className="right-side">
           <div className="parent">
             <div className="home">
-              <form>
-                <div className="text">
-                  <h3>This is the best match we could find.</h3>
-                  <h2>
-                    <strong>Is he/she the same child?</strong>
-                  </h2>
+              {showSorryMessage ? (
+                <div className="sorry-message">
+                  <h2>sorry, if someone found him he will contact you </h2>
                 </div>
-                <div className="buttons-home">
-                  <button
-                    type="button"
-                    className="yes-button"
-                    onClick={() => handleAnswer("yes")}
-                  >
-                    Yes
-                  </button>
-                  <button
-                    type="button"
-                    className="no-button"
-                    onClick={() => handleAnswer("no")}
-                  >
-                    No
-                  </button>
-                </div>
-                <div className="btn"></div>
-              </form>
+              ) : (
+                <form>
+                  <div className="text">
+                    <h3>This is the best match we could find.</h3>
+                    <h2>
+                      <strong>Is he/she the same child?</strong>
+                    </h2>
+                  </div>
+                  <div className="buttons-home">
+                    <button
+                      type="button"
+                      className="yes-button"
+                      onClick={() => handleAnswer("yes")}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      className="no-button"
+                      onClick={() => handleAnswer("no")}
+                    >
+                      No
+                    </button>
+                  </div>
+                  <div className="btn"></div>
+                </form>
+              )}
             </div>
           </div>
         </div>
