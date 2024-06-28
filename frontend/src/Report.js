@@ -5,7 +5,7 @@ import "boxicons/css/boxicons.min.css";
 import Header from "./components/Header";
 import { Link, useNavigate } from "react-router-dom"; // استيراد useNavigate
 
-export default function Lost() {
+export default function Report() {
   const inputFileRef = useRef(null);
   const imgAreaRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
