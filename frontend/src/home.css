@@ -1,4 +1,3 @@
-/* Center content styles */
 .parent-home {
   text-align: center;
   width: 100%;
@@ -23,34 +22,33 @@
 }
 
 .blue-button,
-.black-button {
-  width: 200px; /* Width of the buttons */
-  height: 200px; /* Height of the buttons to make them square */
-  border-radius: 10px; /* Rounded corners */
+.home-button {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
   font-size: 20px;
-  font-weight: bold; /* Make the font bold */
+  font-weight: bold;
   color: black;
   cursor: pointer;
   text-decoration: none;
-
-  /* Center the text inside the buttons */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .blue-button {
-  background-color: #c10c99;
+  background-color: darkblue;
+  color: white;
 }
 
 .blue-button:hover {
-  background-color: #85086a;
+  background-color: blue;
 }
 
-.black-button {
+.home-button {
   background-color: #c10c99;
 }
 
-.black-button:hover {
+.home-button:hover {
   background-color: #85086a;
 }

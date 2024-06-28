@@ -2,7 +2,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Header from "./components/Header";
-import img from "./img/22.jpg";
+import img from "./img/3.jpg";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -73,122 +73,129 @@ export default function SignUp() {
   };
 
   return (
-    <div className="parent">
+    <div>
       <Header />
-      <div className="register">
-        <img
-          src={img}
-          alt=""
-          style={{
-            width: "60%",
-            height: "150%",
-            marginTop: "450px",
-            marginRight: "15px",
-            borderRadius: "10px",
-          }}
-        />
-        <form style={{ height: "80%" }} onSubmit={submit}>
-          <div style={{ fontSize: "40px", marginBottom: "1px" }}>Sign up</div>
-          <div style={{ fontSize: "18px" }}>
-            If you already have an account register you can :-
-          </div>
-          <Link
-            to="/login"
-            style={{ color: "#C10C99", fontSize: "18px", marginBottom: "5px" }}
-          >
-            login here!
-          </Link>
-          <label htmlFor="Fname">First Name:</label>
-          <input
-            id="Fname"
-            type="text"
-            placeholder="Enter your first name"
-            value={formData.Fname}
-            onChange={handleChange}
+      <div className="parent">
+        <div className="register">
+          <img
+            src={img}
+            alt=""
+            style={{
+              width: "60%",
+              height: "150%",
+              marginTop: "450px",
+              marginRight: "15px",
+              borderRadius: "10px",
+              visibility: "hidden",
+            }}
           />
-          {accept && errors.Fname && <p className="error">{errors.Fname}</p>}
+          <form style={{ height: "100%" }} onSubmit={submit}>
+            <div style={{ fontSize: "40px", marginBottom: "1px" }}>Sign up</div>
+            <div style={{ fontSize: "18px" }}>
+              If you already have an account register you can :-
+            </div>
+            <Link
+              to="/login"
+              style={{
+                color: "#C10C99",
+                fontSize: "18px",
+                marginBottom: "5px",
+              }}
+            >
+              login here!
+            </Link>
+            <label htmlFor="Fname">First Name:</label>
+            <input
+              id="Fname"
+              type="text"
+              placeholder="Enter your first name"
+              value={formData.Fname}
+              onChange={handleChange}
+            />
+            {accept && errors.Fname && <p className="error">{errors.Fname}</p>}
 
-          <label htmlFor="Lname">Last Name:</label>
-          <input
-            id="Lname"
-            type="text"
-            placeholder="Enter your last name"
-            value={formData.Lname}
-            onChange={handleChange}
-          />
-          {accept && errors.Lname && <p className="error">{errors.Lname}</p>}
+            <label htmlFor="Lname">Last Name:</label>
+            <input
+              id="Lname"
+              type="text"
+              placeholder="Enter your last name"
+              value={formData.Lname}
+              onChange={handleChange}
+            />
+            {accept && errors.Lname && <p className="error">{errors.Lname}</p>}
 
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email"
-            placeholder="Enter your email address"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {accept && errors.email && <p className="error">{errors.email}</p>}
-          {emailer === 422 && accept && (
-            <p className="error">Email is already taken</p>
-          )}
+            <label htmlFor="email">Email:</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email address"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            {accept && errors.email && <p className="error">{errors.email}</p>}
+            {emailer === 422 && accept && (
+              <p className="error">Email is already taken</p>
+            )}
 
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            placeholder="Enter your password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          {accept && errors.password && (
-            <p className="error">{errors.password}</p>
-          )}
+            <label htmlFor="password">Password:</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            {accept && errors.password && (
+              <p className="error">{errors.password}</p>
+            )}
 
-          <label htmlFor="repassword">Confirm Password:</label>
-          <input
-            id="repassword"
-            type="password"
-            placeholder="Confirm your password"
-            value={formData.repassword}
-            onChange={handleChange}
-          />
-          {accept && errors.repassword && (
-            <p className="error">{errors.repassword}</p>
-          )}
+            <label htmlFor="repassword">Confirm Password:</label>
+            <input
+              id="repassword"
+              type="password"
+              placeholder="Confirm your password"
+              value={formData.repassword}
+              onChange={handleChange}
+            />
+            {accept && errors.repassword && (
+              <p className="error">{errors.repassword}</p>
+            )}
 
-          <label htmlFor="phone">Phone Number:</label>
-          <input
-            id="phone"
-            type="text"
-            placeholder="Enter your phone number"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-          {accept && errors.phone && <p className="error">{errors.phone}</p>}
+            <label htmlFor="phone">Phone Number:</label>
+            <input
+              id="phone"
+              type="text"
+              placeholder="Enter your phone number"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+            {accept && errors.phone && <p className="error">{errors.phone}</p>}
 
-          <label htmlFor="state">State:</label>
-          <input
-            id="state"
-            type="text"
-            placeholder="Enter your state"
-            value={formData.state}
-            onChange={handleChange}
-          />
-          {accept && errors.state && <p className="error">{errors.state}</p>}
+            <label htmlFor="state">State:</label>
+            <input
+              id="state"
+              type="text"
+              placeholder="Enter your state"
+              value={formData.state}
+              onChange={handleChange}
+            />
+            {accept && errors.state && <p className="error">{errors.state}</p>}
 
-          <label htmlFor="city">City:</label>
-          <input
-            id="city"
-            type="text"
-            placeholder="Enter your city"
-            value={formData.city}
-            onChange={handleChange}
-          />
-          {accept && errors.city && <p className="error">{errors.city}</p>}
+            <label htmlFor="city">City:</label>
+            <input
+              id="city"
+              type="text"
+              placeholder="Enter your city"
+              value={formData.city}
+              onChange={handleChange}
+            />
+            {accept && errors.city && <p className="error">{errors.city}</p>}
 
-          <div className="btn">
-            <button type="submit">Register</button>
-          </div>
-        </form>
+            <div className="btn">
+              <button type="submit">Register</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

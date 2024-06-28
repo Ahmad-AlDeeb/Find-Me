@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Header from "./components/Header";
 import { Link } from "react-router-dom";
-import img from "./img/1.jpg";
+import img from "./img/4.jpg";
 
 export default function Login() {
   const [email, setemail] = useState("");
@@ -35,58 +35,66 @@ export default function Login() {
   }
 
   return (
-    <div className="parent">
+    <div style={{ background: "black" }}>
       <>
         <Header />
       </>
-      <div className="register">
-        <img
-          src={img}
-          alt=""
-          style={{
-            width: "60%",
-            marginRight: "15px",
-            borderRadius: "10px",
-          }}
-        />
-        <form onSubmit={submit}>
-          <div style={{ fontSize: "40px", marginBottom: "20px" }}>Sign in</div>
-          <div style={{ fontSize: "18px" }}>
-            If you don’t have an account register you can :-
-          </div>
-          <Link
-            to="/register"
-            style={{ color: "#C10C99", fontSize: "18px", marginBottom: "20px" }}
-          >
-            Register here !
-          </Link>
-          <label htmlFor="email"> Email :</label>
-          <input
-            id="email"
-            type="email"
-            placeholder="Enter your email address"
-            required
-            value={email}
-            onChange={(e) => setemail(e.target.value)}
+      <div style={{ background: "black" }} className="parent">
+        <div className="register">
+          <img
+            src={img}
+            alt=""
+            style={{
+              width: "60%",
+              marginRight: "15px",
+              borderRadius: "10px",
+            }}
           />
-          <label htmlFor="pass"> Password :</label>
-          <input
-            id="pass"
-            type="password"
-            placeholder="Enter your Password"
-            value={password}
-            onChange={(e) => setpassword(e.target.value)}
-          />
-          {password.length < 8 && accept && (
-            <p className="error">pass must be more than 8 char</p>
-          )}
-          {emailer === 400 && accept && (
-            <p className="error"> email or password invaild</p>
-          )}
-          <div className="btn">
-            <button type="submit">login</button>
-          </div>
-        </form>
+          <form onSubmit={submit}>
+            <div style={{ fontSize: "40px", marginBottom: "20px" }}>
+              Sign in
+            </div>
+            <div style={{ fontSize: "18px" }}>
+              If you don’t have an account register you can :-
+            </div>
+            <Link
+              to="/register"
+              style={{
+                color: "#C10C99",
+                fontSize: "18px",
+                marginBottom: "20px",
+              }}
+            >
+              Register here !
+            </Link>
+            <label htmlFor="email"> Email :</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email address"
+              required
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
+            />
+            <label htmlFor="pass"> Password :</label>
+            <input
+              id="pass"
+              type="password"
+              placeholder="Enter your Password"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
+            />
+            {password.length < 8 && accept && (
+              <p className="error">pass must be more than 8 char</p>
+            )}
+            {emailer === 400 && accept && (
+              <p className="error"> email or password invaild</p>
+            )}
+            <div className="btn">
+              <button type="submit">login</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

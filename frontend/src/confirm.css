@@ -1,0 +1,95 @@
+.conf {
+  display: flex;
+  height: 100%;
+}
+
+.left-side,
+.right-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Oswald", sans-serif;
+  margin: 0;
+  color: white;
+  background-image: url("./img/3.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.image {
+  max-width: 90%;
+  max-height: 90%;
+}
+.buttons-home {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
+
+.no-button,
+.yes-button {
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-button {
+  background-color: darkblue;
+  color: white;
+}
+
+.no-button:hover {
+  background-color: blue;
+}
+
+.yes-button {
+  background-color: #c10c99;
+}
+
+.yes-button:hover {
+  background-color: #85086a;
+}
+.loading-box {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  background: rgb(40, 40, 40);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0px 2px 15px white;
+  letter-spacing: 2px;
+}
+
+.loading {
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+}
+
+.loading .spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid black;
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
