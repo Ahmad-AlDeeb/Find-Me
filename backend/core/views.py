@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
+from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import status
@@ -71,15 +72,7 @@ def logout_user(request):
     return redirect('/')
 
 
-@api_view()
-def user_list(request):
-    users = User.objects.all()
-    serializer = UserSerializer(users, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-
-@api_view()
-def user_detail(request, id):
-    user = get_object_or_404(User, pk=id)
-    serializer = UserSerializer(user)
-    return Response(serializer.data, status=status.HTTP_200_OK)
