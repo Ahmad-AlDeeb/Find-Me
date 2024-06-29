@@ -60,7 +60,7 @@
   width: 40%;
   height: 70px;
   margin: 5px;
-  border: 2px solid #85086a;
+  border: 5px solid black;
   border-radius: 180px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -79,16 +79,6 @@
 }
 
 .custom-radio:not(.selected) {
-  background-color: white;
-  color: black;
-}
-
-.custom-radio input[type="radio"]:checked + span::before {
-  content: "●";
-  color: #c10c99;
-}
-
-.custom-radio span {
-  display: flex;
-  align-items: center;
+  background-color: black;
+  color: white;
 }
