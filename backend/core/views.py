@@ -96,8 +96,7 @@ class ChildReportView(generics.CreateAPIView):
             database_dir = os.path.join(settings.MEDIA_ROOT, sub_dirs.get(child_status, ''))
 
             if not os.path.exists(database_dir):
-                return Response({"error": "Invalid status or directory does not exist."},
-                                status=status.HTTP_400_BAD_REQUEST)
+                os.makedirs(database_dir)
 
             result = compare_faces(uploaded_image, database_dir)
 
