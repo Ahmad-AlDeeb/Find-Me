@@ -5,7 +5,6 @@ import About from "./About";
 import Dash from "./Dash";
 import Users from "./Users";
 import Home from "./Home";
-import Report from "./Report";
 import "boxicons/css/boxicons.min.css";
 import Confirm from "./Confirm";
 
@@ -16,8 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<SignUp />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/report" element={<Report />}></Route>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/confirm" element={<Confirm />}></Route>
         <Route path="about" element={<About />} />
         <Route path="/about" element={<About />}></Route>

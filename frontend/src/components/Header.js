@@ -16,7 +16,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="element">
-          <Link to="/home" className="element-nav">
+          <Link to="/" className="element-nav">
             Home
           </Link>
           <Link to="/confirm" className="element-nav">

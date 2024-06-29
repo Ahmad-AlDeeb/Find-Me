@@ -51,12 +51,3 @@
 .btn button:hover {
   background-color: #0056b3;
 }
-
-.back-button {
-  font-size: 400%;
-  color: #c10c99;
-  letter-spacing: 1px;
-}
-.back-button :hover {
-  color: #86096b;
-}

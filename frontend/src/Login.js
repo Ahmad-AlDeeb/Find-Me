@@ -26,7 +26,7 @@ export default function Login() {
         });
         if (res.status === 200) {
           window.localStorage.setItem("email", email);
-          window.location.pathname = "/home";
+          window.location.pathname = "/";
         }
       }
     } catch (err) {
