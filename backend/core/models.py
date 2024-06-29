@@ -1,3 +1,6 @@
+import os
+from telnetlib import STATUS
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -28,7 +31,33 @@ class User(AbstractUser):
         return self.email
 
 
-# class Child(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-#     img_url = models.URLField()
-#     is_lost = models.BooleanField()
+def upload_to_child(instance, filename):
+    # Determine upload folder based on status
+    if instance.status == 'L':
+        folder = 'lost_children'
+    elif instance.status == 'F':
+        folder = 'found_children'
+    else:
+        # If status is neither 'L' nor 'F', return None to prevent saving the image
+        return None
+
+    # Return the uploaded file path
+    return os.path.join(folder, filename)
+
+
+class Child(models.Model):
+    STATE_CHOICES = (
+        ('L', 'lost'),
+        ('F', 'found')
+    )
+    img = models.ImageField(upload_to=upload_to_child)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    status = models.CharField(max_length=1, choices=STATE_CHOICES)
+    is_found = models.BooleanField(default=False)
+
+    def delete(self, *args, **kwargs):
+        # Check if there is an image and if it exists on the filesystem
+        if self.img and os.path.isfile(self.img.path):
+            os.remove(self.img.path)
+        # Call the superclass delete method to delete the object from the database
+        super(Child, self).delete(*args, **kwargs)

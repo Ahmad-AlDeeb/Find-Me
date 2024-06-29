@@ -1,17 +1,23 @@
+import os
+
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404
-from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework import generics, viewsets
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import status
 import json
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from io import BytesIO
+from PIL import Image
 
-from .models import User
-from .serializers import UserSerializer
+from .models import User, Child
+from .serializers import UserSerializer, ChildSerializer
+from .kernel import main as compare_faces
+from django.conf import settings
 
 
 # Create your views here.
@@ -75,4 +81,48 @@ def logout_user(request):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class ChildReportView(generics.CreateAPIView):
+    parser_classes = (MultiPartParser, FormParser)
+    serializer_class = ChildSerializer
+
+    def create(self, request, *args, **kwargs):
+        try:
+            uploaded_image = request.FILES.get('img')
+            child_status = request.data.get('status')
+
+            sub_dirs = {'F': 'lost_children', 'L': 'found_children'}
+            database_dir = os.path.join(settings.MEDIA_ROOT, sub_dirs.get(child_status, ''))
+
+            if not os.path.exists(database_dir):
+                os.makedirs(database_dir)
+
+            result = compare_faces(uploaded_image, database_dir)
+
+            if not result:
+                return Response({"message": "No similar image found in database."}, status=status.HTTP_404_NOT_FOUND)
+
+            most_similar_filename = next(iter(result))
+
+            child = Child.objects.filter(img__endswith=most_similar_filename).first()
+
+            if child is None:
+                return Response({"message": "No matching children found."}, status=status.HTTP_404_NOT_FOUND)
+
+            response = {
+                "user": {
+                    "first_name": child.user.first_name,
+                    "last_name": child.user.last_name,
+                    "phone": child.user.phone,
+                    "state": child.user.city,
+                    "city": child.user.city
+                },
+                "image": child.img.url
+            }
+
+            return Response(response, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
