@@ -19,9 +19,9 @@
 - Login: `POST localhost:8000/login/`.
 - Create account: `POST localhost:8000/register/`.
 - Send report: `POST localhost:8000/report/`.
-- Send user answer: `POST /result`.
-- Get all users: `GET /users`.
-- Get one user: `GET /users/<id>`.
+- Send user answer: `POST localhost:8000/result/`.
+- Get all users: `GET localhost:8000/users/`.
+- Get one user: `GET localhost:8000/users/<id>/`.
 # 🟡Models
 - `user`:
 	- `id`.
