@@ -41,7 +41,7 @@
 - About page
 - FAQ page
 - Resting password
-- Changing user details
+- User profile
 - Email confirmation
 - Deploying
 - Integrating with mobile app
