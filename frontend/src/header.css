@@ -10,6 +10,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: 0.5s;
+  margin-right: 50px;
 }
 .reg-nav:hover {
   background: #86096b;
@@ -23,6 +24,7 @@
   font-weight: bold;
   display: flex;
   color: #c10c99;
+  margin-left: 50px;
 }
 .find {
   border-radius: 15px;
@@ -63,4 +65,11 @@
 .element-nav:hover {
   color: #c10c99;
   letter-spacing: 1.5px;
+}
+
+.acc {
+  font-size: 30px;
+  font-weight: bold;
+  color: #c10c99; /* لون النص الخاص بك */
+  margin: 15px;
 }

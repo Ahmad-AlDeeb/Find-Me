@@ -3,7 +3,6 @@ import Header from "./components/Header";
 
 export default function UserDetails() {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -16,17 +15,11 @@ export default function UserDetails() {
         setUser(userData);
       } catch (error) {
         console.error("There was a problem with fetching user data:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchUserData();
   }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>
@@ -37,19 +30,19 @@ export default function UserDetails() {
           {user ? (
             <div>
               <p>
-                <strong>first Name:</strong> {user.first_name}
+                <strong>First Name:</strong> {user.first_name}
               </p>
               <p>
-                <strong>last name :</strong> {user.last_name}
+                <strong>Last Name:</strong> {user.last_name}
               </p>
               <p>
-                <strong>phone:</strong> {user.phone}
+                <strong>Phone:</strong> {user.phone}
               </p>
               <p>
-                <strong>state:</strong> {user.state}
+                <strong>State:</strong> {user.state}
               </p>
               <p>
-                <strong>state:</strong> {user.city}
+                <strong>City:</strong> {user.city}
               </p>
             </div>
           ) : (
