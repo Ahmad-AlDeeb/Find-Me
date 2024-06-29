@@ -26,7 +26,7 @@ export default function Login() {
         });
         if (res.status === 200) {
           window.localStorage.setItem("email", email);
-          window.localStorage.setItem("firstName", res.data.firstName);
+          window.localStorage.setItem("firstName", res.data.email);
           window.location.pathname = "/";
         }
       }
@@ -36,12 +36,12 @@ export default function Login() {
   }
 
   return (
-    <div style={{ background: "black" }}>
+    <div style={{ background: "black", height: "100vh", overflow: "hidden" }}>
       <>
         <Header />
       </>
       <div className="parent">
-        <div className="login" style={{}}>
+        <div className="login">
           <img
             src={img}
             alt=""
