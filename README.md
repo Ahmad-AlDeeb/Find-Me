@@ -7,31 +7,20 @@
 - Upload the lost child photo.
 - Get location and phone number of `Parent` who lost his child (success case✅).
 - Receive notification when the lost child's parent is found (failure case ❌).
-# 🚩User Journey
-   - **Login/signup page:**
-	   - Create account.
-	   - Log in.
-   - **Home page:**
-	   - Report missing.
-	   - Report found.
-   - **Report page:**
-	   - Upload image.
-   - **Success page**.
-   - **Failure page**.
 # 🔵Endpoints
-- Login page: `GET /login`.
-- Logging in: `POST /login`.
-- Create account page: `GET /register`.
-- Creating account: `POST /register`.
-- Home page: `GET /`.
-- Report page: `GET /report`.
-- Send report details: `POST /report`.
-- Result page: `GET /result`.
-- Send user answer: `POST /result`.
-- Get all users: `GET /users`.
-- Get one user: `GET /users/<id>`.
-- Get all children: `GET /children`
-- Get one child: `GET /children/<id>`
+## Frontend:
+- Login page: `GET localhost:3000/login`.
+- Create account page: `GET localhost:3000/register`.
+- Home page: `GET localhost:3000`.
+- Report page: `GET localhost:3000/report`.
+- Result page: `GET localhost:3000/result`.
+- User details page: `GET localhost:3000/user-details`.
+## Backend:
+- Login: `POST localhost:8000/login/`.
+- Create account: `POST localhost:8000/register/`.
+- Send report: `POST localhost:8000/report/`.
+- Get all users: `GET localhost:8000/users/`.
+- Get one user: `GET localhost:8000/users/<id>/`.
 # 🟡Models
 - `user`:
 	- `id`.
@@ -47,10 +36,14 @@
 	- `user_id`.
 	- `img_url`.
 	- `status`.
-# 💀 Problems
-- Email Confirmation
-- Deploying
+ 	- `is_found`.
 # 🤔 Extra
 - About page
+- FAQ page
 - Resting password
-- Changing user details
+- User profile
+- Email confirmation
+- Deploying
+- Integrating with mobile app
+- Check user Authentication at frontend
+- Children endpoints

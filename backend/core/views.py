@@ -5,12 +5,10 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404
-from rest_framework import generics
-from rest_framework.decorators import api_view
+from rest_framework import generics, viewsets
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
-from rest_framework.views import status, APIView
+from rest_framework.views import status
 import json
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
@@ -80,18 +78,9 @@ def logout_user(request):
     return redirect('/')
 
 
-@api_view()
-def user_list(request):
-    users = User.objects.all()
-    serializer = UserSerializer(users, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-@api_view()
-def user_detail(request, id):
-    user = get_object_or_404(User, pk=id)
-    serializer = UserSerializer(user)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class ChildReportView(generics.CreateAPIView):
@@ -135,3 +124,4 @@ class ChildReportView(generics.CreateAPIView):
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
