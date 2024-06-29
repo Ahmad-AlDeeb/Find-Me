@@ -15,22 +15,18 @@ export default function Header() {
             ME
           </Link>
         </div>
+      </div>
+      <div className="d-flex">
         <div className="element">
           <Link to="/" className="element-nav">
             Home
           </Link>
-          <Link to="/confirm" className="element-nav">
-            confirmation
-          </Link>
-          <Link to="/dashboard" className="element-nav"></Link>
         </div>
-      </div>
-      <div className="d-flex">
         {!window.localStorage.getItem("email") ? (
           <>
             <Link
               to="/register"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "5px" }}
               className="reg-nav"
             >
               Register

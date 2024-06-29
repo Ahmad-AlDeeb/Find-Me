@@ -2,7 +2,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Header from "./components/Header";
-import img from "./img/3.jpg";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -77,33 +76,26 @@ export default function SignUp() {
       <Header />
       <div className="parent">
         <div className="register">
-          <img
-            src={img}
-            alt=""
+          <div
             style={{
-              width: "60%",
-              height: "150%",
-              marginTop: "450px",
-              marginRight: "15px",
-              borderRadius: "10px",
-              visibility: "hidden",
+              marginRight: "100px",
             }}
-          />
-          <form style={{ height: "100%" }} onSubmit={submit}>
-            <div style={{ fontSize: "40px", marginBottom: "1px" }}>Sign up</div>
-            <div style={{ fontSize: "18px" }}>
-              If you already have an account register you can :-
+          >
+            <div style={{ fontSize: "40px", margin: "10px" }}>Sign up</div>
+            <div style={{ fontSize: "30px" }}>
+              If you already have an account register you can:- ____
             </div>
             <Link
               to="/login"
               style={{
                 color: "#C10C99",
-                fontSize: "18px",
-                marginBottom: "5px",
+                fontSize: "35px",
               }}
             >
               login here!
             </Link>
+          </div>
+          <form onSubmit={submit}>
             <label htmlFor="Fname">First Name:</label>
             <input
               id="Fname"

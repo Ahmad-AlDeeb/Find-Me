@@ -7,6 +7,7 @@ import Users from "./Users";
 import Home from "./Home";
 import "boxicons/css/boxicons.min.css";
 import Confirm from "./Confirm";
+import UserDetails from "./UserDetails";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/" element={<Home />}></Route>
         <Route path="/confirm" element={<Confirm />}></Route>
+        <Route path="/userdetails" element={<UserDetails />} />
         <Route path="about" element={<About />} />
         <Route path="/about" element={<About />}></Route>
         <Route path="/dashboard" element={<Dash />}>

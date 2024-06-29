@@ -72,82 +72,84 @@ export default function Home() {
   };
 
   return (
-    <div className="parent">
+    <div>
       <Header />
-      <ToastContainer />
-      <div
-        className="home"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
+      <div className="parent">
+        <ToastContainer />
         <div
-          className="left-form"
-          style={{ flex: "0 0 45%", marginRight: "20px" }}
+          className="home"
+          style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <form>
-            <h2 className="title-home">Please select an option.</h2>
-            <div className="options-home">
-              <label
-                className={`custom-radio ${
-                  selectedOption === "missing" ? "selected" : ""
-                }`}
+          <div
+            className="left-form"
+            style={{ flex: "0 0 45%", marginRight: "20px" }}
+          >
+            <form>
+              <h2 className="title-home">Please select an option.</h2>
+              <div className="options-home">
+                <label
+                  className={`custom-radio ${
+                    selectedOption === "missing" ? "selected" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    value="missing"
+                    checked={selectedOption === "missing"}
+                    onChange={handleOptionChange}
+                  />
+                  Missing person
+                </label>
+                <label
+                  className={`custom-radio ${
+                    selectedOption === "found" ? "selected" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    value="found"
+                    checked={selectedOption === "found"}
+                    onChange={handleOptionChange}
+                  />
+                  Person found
+                </label>
+              </div>
+            </form>
+          </div>
+          <div className="right-form" style={{ flex: "0 0 45%" }}>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="file"
+                id="file"
+                accept="image/*"
+                hidden
+                ref={inputFileRef}
+                onChange={handleInputChange}
+              />
+              <div className="img-area" data-img={imgName} ref={imgAreaRef}>
+                {imgSrc ? (
+                  <img src={imgSrc} alt="Uploaded" />
+                ) : (
+                  <>
+                    <i className="bx bxs-cloud-upload icon"></i>
+                    <h3>Upload Image</h3>
+                  </>
+                )}
+              </div>
+              <button
+                type="button"
+                className="select-image"
+                onClick={handleSelectImageClick}
               >
-                <input
-                  type="radio"
-                  value="missing"
-                  checked={selectedOption === "missing"}
-                  onChange={handleOptionChange}
-                />
-                Missing person
-              </label>
-              <label
-                className={`custom-radio ${
-                  selectedOption === "found" ? "selected" : ""
-                }`}
-              >
-                <input
-                  type="radio"
-                  value="found"
-                  checked={selectedOption === "found"}
-                  onChange={handleOptionChange}
-                />
-                Person found
-              </label>
-            </div>
-          </form>
-        </div>
-        <div className="right-form" style={{ flex: "0 0 45%" }}>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="file"
-              id="file"
-              accept="image/*"
-              hidden
-              ref={inputFileRef}
-              onChange={handleInputChange}
-            />
-            <div className="img-area" data-img={imgName} ref={imgAreaRef}>
-              {imgSrc ? (
-                <img src={imgSrc} alt="Uploaded" />
-              ) : (
-                <>
-                  <i className="bx bxs-cloud-upload icon"></i>
-                  <h3>Upload Image</h3>
-                </>
-              )}
-            </div>
-            <button
-              type="button"
-              className="select-image"
-              onClick={handleSelectImageClick}
-            >
-              Select Image
-            </button>
-            <div className="btn">
-              <button type="submit" disabled={isLoading}>
-                {isLoading ? "Uploading..." : "Submit"}
+                Select Image
               </button>
-            </div>
-          </form>
+              <div className="btn">
+                <button type="submit" disabled={isLoading}>
+                  {isLoading ? "Uploading..." : "Submit"}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

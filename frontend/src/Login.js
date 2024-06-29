@@ -39,13 +39,14 @@ export default function Login() {
       <>
         <Header />
       </>
-      <div style={{ background: "black" }} className="parent">
-        <div className="register">
+      <div className="parent">
+        <div className="login" style={{}}>
           <img
             src={img}
             alt=""
             style={{
               width: "60%",
+              marginTop: "20px",
               marginRight: "15px",
               borderRadius: "10px",
             }}
