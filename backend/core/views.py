@@ -106,21 +106,23 @@ class ChildReportView(generics.CreateAPIView):
 
             most_similar_filename = next(iter(result))
 
-            matching_children = Child.objects.filter(img__endswith=most_similar_filename)
+            child = Child.objects.filter(img__endswith=most_similar_filename).first()
 
-            if not matching_children.exists():
+            if child is None:
                 return Response({"message": "No matching children found."}, status=status.HTTP_404_NOT_FOUND)
 
-            users_info = []
-            for child in matching_children:
-                user_info = {
+            response = {
+                "user": {
                     "first_name": child.user.first_name,
                     "last_name": child.user.last_name,
-                    "phone": child.user.phone  # Assuming phone is stored in a user profile model
-                }
-                users_info.append(user_info)
+                    "phone": child.user.phone,
+                    "state": child.user.city,
+                    "city": child.user.city
+                },
+                "image": child.img.url
+            }
 
-            return Response({"users": users_info}, status=status.HTTP_200_OK)
+            return Response(response, status=status.HTTP_200_OK)
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
