@@ -49,7 +49,7 @@ export default function Home() {
     const formData = new FormData();
     formData.append("img", inputFileRef.current.files[0]);
     formData.append("status", selectedOption);
-    formData.append("email", window.localStorage.email)
+    formData.append("email", window.localStorage.email);
 
     try {
       const response = await axios.post(
@@ -64,7 +64,7 @@ export default function Home() {
       console.log("Image uploaded successfully:", response);
       toast.success("Image uploaded successfully!");
       navigate("/confirm", {
-        state: {image: response.data.image}
+        state: { image: response.data.image },
       });
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -83,68 +83,68 @@ export default function Home() {
           className="home"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <form>
-            <h2 className="title-home">Please select an option.</h2>
-            <div className="options-home">
-              <label
-                className={`custom-radio ${
-                  selectedOption === "L" ? "selected" : ""
-                }`}
+          <div
+            className="left-form"
+            style={{ flex: "0 0 45%", marginRight: "20px" }}
+          >
+            <form>
+              <h2 className="title-home">Please select an option.</h2>
+              <div className="options-home">
+                <label
+                  className={`custom-radio ${
+                    selectedOption === "L" ? "selected" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    value="L"
+                    checked={selectedOption === "L"}
+                    onChange={handleOptionChange}
+                  />
+                  Lost Child
+                </label>
+                <label
+                  className={`custom-radio ${
+                    selectedOption === "F" ? "selected" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    value="F"
+                    checked={selectedOption === "F"}
+                    onChange={handleOptionChange}
+                  />
+                  Found Child
+                </label>
+              </div>
+            </form>
+          </div>
+          <div className="right-form" style={{ flex: "0 0 45%" }}>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="file"
+                id="file"
+                accept="image/*"
+                hidden
+                ref={inputFileRef}
+                onChange={handleInputChange}
+              />
+              <div className="img-area" data-img={imgName} ref={imgAreaRef}>
+                {imgSrc ? (
+                  <img src={imgSrc} alt="Uploaded" />
+                ) : (
+                  <>
+                    <i className="bx bxs-cloud-upload icon"></i>
+                    <h3>Upload Image</h3>
+                  </>
+                )}
+              </div>
+              <button
+                type="button"
+                className="select-image"
+                onClick={handleSelectImageClick}
               >
-                <input
-                  type="radio"
-                  value="L"
-                  checked={selectedOption === "L"}
-                  onChange={handleOptionChange}
-                />
-                Lost Child
-              </label>
-              <label
-                className={`custom-radio ${
-                  selectedOption === "F" ? "selected" : ""
-                }`}
-              >
-                <input
-                  type="radio"
-                  value="F"
-                  checked={selectedOption === "F"}
-                  onChange={handleOptionChange}
-                />
-                Found Child
-              </label>
-            </div>
-          </form>
-        </div>
-        <div className="right-form" style={{ flex: "0 0 45%" }}>
-          <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <input
-              type="file"
-              id="file"
-              accept="image/*"
-              hidden
-              ref={inputFileRef}
-              onChange={handleInputChange}
-            />
-            <div className="img-area" data-img={imgName} ref={imgAreaRef}>
-              {imgSrc ? (
-                <img src={imgSrc} alt="Uploaded" />
-              ) : (
-                <>
-                  <i className="bx bxs-cloud-upload icon"></i>
-                  <h3>Upload Image</h3>
-                </>
-              )}
-            </div>
-            <button
-              type="button"
-              className="select-image"
-              onClick={handleSelectImageClick}
-            >
-              Select Image
-            </button>
-            <div className="btn">
-              <button type="submit" disabled={isLoading}>
-                {isLoading ? "Uploading..." : "Submit"}
+                Select Image
               </button>
               <div className="btn">
                 <button type="submit" disabled={isLoading}>

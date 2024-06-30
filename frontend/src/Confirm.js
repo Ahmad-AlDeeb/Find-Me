@@ -9,6 +9,7 @@ export default function Confirm() {
   const [showSorryMessage, setShowSorryMessage] = useState(false);
   const location = useLocation();
   const { state } = location;
+  const navigate = useNavigate
 
   const handleAnswer = async (answer) => {
     if (answer === "yes") {
