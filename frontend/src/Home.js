@@ -47,7 +47,7 @@ export default function Home() {
 
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("image", inputFileRef.current.files[0]);
+    formData.append("img", inputFileRef.current.files[0]);
     formData.append("option", selectedOption);
     formData.append("email", window.localStorage.email)
 
