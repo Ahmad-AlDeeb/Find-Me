@@ -46,4 +46,5 @@
 - Integrating with mobile app
 - Check user Authentication at frontend
 - Children endpoints
-- Add Hi message with the first name when user logged in 
+- Add Hi message with the first name when user logged in
+- Resize uploaded image to specific size
