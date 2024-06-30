@@ -36,14 +36,15 @@
 	- `img_url`.
 	- `status`.
  	- `is_found`.
-# 🤔 Extra
+# 🤔 To-do-list
 - About page
 - FAQ page
-- Resting password
 - User profile
-- Email confirmation
-- Deploying
-- Integrating with mobile app
-- Check user Authentication at frontend
 - Children endpoints
 - Resize uploaded image to specific size
+# 💀 Hard-list
+- JWT Authentication
+- Email confirmation
+- Resetting password
+- Integrating with mobile app
+- Deploying
