@@ -89,32 +89,47 @@ class ChildReportView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         try:
+            print("FILES============")
+            print(request.FILES)
+            print("Data==============")
+            print(request.data)
+
             uploaded_image = request.FILES.get('img')
+            if uploaded_image is not None:
+                print("======================== The Image is Not None ===========================================")
+
             child_status = request.data.get('status')
             email = request.data.get('email')
+            print("==================== SUCCESS ====================")
 
             sub_dirs = {'F': 'lost_children', 'L': 'found_children'}
             database_dir = os.path.join(settings.MEDIA_ROOT, sub_dirs.get(child_status, ''))
             if not os.path.exists(database_dir):
                 os.makedirs(database_dir)
+            print("==================== SUCCESS ====================")
 
             result = compare_faces(uploaded_image, database_dir)
+            print("==================== SUCCESS ====================")
+
+            if not result:
+                return Response({"message": "No images"}, status=status.HTTP_404_NOT_FOUND)
+            print("==================== SUCCESS ====================")
 
             user = User.objects.get(email=email)
             new_child = Child(user=user, status=child_status, img=uploaded_image)
             new_child.save()
-
-            if not result:
-                return Response({"message": "No images"}, status=status.HTTP_404_NOT_FOUND)
+            print("==================== SUCCESS ====================")
 
             most_similar_filename = next(iter(result))
+            print("==================== SUCCESS ====================")
 
             child = Child.objects.filter(img__endswith=most_similar_filename).first()
-            print("====4 SUCCESS====")
+            print("==================== SUCCESS ====================")
 
             if child is None:
                 return Response({"message": "No matching children found."}, status=status.HTTP_404_NOT_FOUND)
 
+            print("==================== SUCCESS ====================")
             response = {
                 "user": {
                     "first_name": child.user.first_name,
@@ -126,8 +141,7 @@ class ChildReportView(generics.CreateAPIView):
                 "image": child.img.url
             }
 
-            print("====5 SUCCESS====")
-
+            print("==================== SUCCESS ====================")
             return Response(response, status=status.HTTP_200_OK)
 
         except Exception as e:
