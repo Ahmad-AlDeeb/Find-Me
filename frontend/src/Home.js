@@ -47,12 +47,13 @@ export default function Home() {
 
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("image", inputFileRef.current.files[0]);
-    formData.append("option", selectedOption);
+    formData.append("img", inputFileRef.current.files[0]);
+    formData.append("status", selectedOption);
+    formData.append("email", window.localStorage.email)
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/report/",
+        "http://127.0.0.1:8000/reports/",
         formData,
         {
           headers: {
@@ -60,9 +61,11 @@ export default function Home() {
           },
         }
       );
-      console.log("Image uploaded successfully:", response.data);
+      console.log("Image uploaded successfully:", response);
       toast.success("Image uploaded successfully!");
-      navigate("/confirm");
+      navigate("/confirm", {
+        state: {image: response.data.image}
+      });
     } catch (error) {
       console.error("Error uploading image:", error);
       toast.error("Error uploading image.");
@@ -88,35 +91,35 @@ export default function Home() {
             <div className="options-home">
               <label
                 className={`custom-radio ${
-                  selectedOption === "missing" ? "selected" : ""
+                  selectedOption === "L" ? "selected" : ""
                 }`}
               >
                 <input
                   type="radio"
-                  value="missing"
-                  checked={selectedOption === "missing"}
+                  value="L"
+                  checked={selectedOption === "L"}
                   onChange={handleOptionChange}
                 />
-                Missing person
+                Lost Child
               </label>
               <label
                 className={`custom-radio ${
-                  selectedOption === "found" ? "selected" : ""
+                  selectedOption === "F" ? "selected" : ""
                 }`}
               >
                 <input
                   type="radio"
-                  value="found"
-                  checked={selectedOption === "found"}
+                  value="F"
+                  checked={selectedOption === "F"}
                   onChange={handleOptionChange}
                 />
-                Person found
+                Found Child
               </label>
             </div>
           </form>
         </div>
         <div className="right-form" style={{ flex: "0 0 45%" }}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
             <input
               type="file"
               id="file"

@@ -10,6 +10,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ChildSerializer(serializers.ModelSerializer):
+    # Temporary just for testing using the REST framework page
+    email = serializers.EmailField()
+
     class Meta:
         model = Child
-        fields = ['img', 'status']
+        fields = ['img', 'status', 'email']
