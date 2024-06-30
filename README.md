@@ -14,7 +14,6 @@
 - Home page: `GET localhost:3000`.
 - Report page: `GET localhost:3000/report`.
 - Result page: `GET localhost:3000/result`.
-- User details page: `GET localhost:3000/user-details`.
 ## Backend:
 - Login: `POST localhost:8000/login/`.
 - Create account: `POST localhost:8000/register/`.
