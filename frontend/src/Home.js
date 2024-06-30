@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
@@ -36,6 +36,11 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    if (!localStorage.getItem('email')) {
+      navigate("/Login")
+    }
+
     if (!selectedOption) {
       toast.error("Please select an option.");
       return;
