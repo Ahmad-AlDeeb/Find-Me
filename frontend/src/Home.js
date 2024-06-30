@@ -61,9 +61,11 @@ export default function Home() {
           },
         }
       );
-      console.log("Image uploaded successfully:", response.data);
+      console.log("Image uploaded successfully:", response);
       toast.success("Image uploaded successfully!");
-      navigate("/confirm");
+      navigate("/confirm", {
+        state: {image: response.data.image}
+      });
     } catch (error) {
       console.error("Error uploading image:", error);
       toast.error("Error uploading image.");
