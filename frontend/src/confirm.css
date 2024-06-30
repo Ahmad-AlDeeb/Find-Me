@@ -22,6 +22,7 @@
   max-width: 90%;
   max-height: 90%;
 }
+
 .buttons-home {
   display: flex;
   justify-content: center;
@@ -59,6 +60,7 @@
 .yes-button:hover {
   background-color: #85086a;
 }
+
 .loading-box {
   width: 60%;
   display: flex;
@@ -92,4 +94,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.sorry-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sad-face {
+  width: 150px;
+  height: 170px;
+  margin-bottom: 20px;
 }

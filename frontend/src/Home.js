@@ -75,16 +75,13 @@ export default function Home() {
   };
 
   return (
-    <div className="parent">
+    <div>
       <Header />
-      <ToastContainer />
-      <div
-        className="home"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
+      <div className="parent">
+        <ToastContainer />
         <div
-          className="left-form"
-          style={{ flex: "0 0 45%", marginRight: "20px" }}
+          className="home"
+          style={{ display: "flex", justifyContent: "space-between" }}
         >
           <form>
             <h2 className="title-home">Please select an option.</h2>
@@ -149,8 +146,13 @@ export default function Home() {
               <button type="submit" disabled={isLoading}>
                 {isLoading ? "Uploading..." : "Submit"}
               </button>
-            </div>
-          </form>
+              <div className="btn">
+                <button type="submit" disabled={isLoading}>
+                  {isLoading ? "Uploading..." : "Submit"}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

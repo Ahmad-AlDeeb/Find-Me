@@ -1,0 +1,75 @@
+.reg-nav {
+  margin: 0 auto;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: #c10c99;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.5s;
+  margin-right: 50px;
+}
+.reg-nav:hover {
+  background: #86096b;
+  letter-spacing: 1px;
+}
+.reg-nav:active {
+  background: green;
+}
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  color: #c10c99;
+  margin-left: 50px;
+}
+.find {
+  border-radius: 15px;
+  background: #c10c99;
+  color: #000;
+  padding: 3px 3px;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.me {
+  color: white;
+  margin-left: 10px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  font-size: 44px;
+}
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3px 5px;
+}
+
+.element-nav {
+  padding: 15px;
+  font-size: 30px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  transition: 0.5s;
+  margin: 3px;
+}
+
+.element-nav:hover {
+  color: #c10c99;
+  letter-spacing: 1.5px;
+}
+
+.acc {
+  font-size: 30px;
+  font-weight: bold;
+  color: #c10c99;
+  margin: 15px;
+}
