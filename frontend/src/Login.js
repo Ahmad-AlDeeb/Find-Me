@@ -26,7 +26,7 @@ export default function Login() {
         });
         if (res.status === 200) {
           window.localStorage.setItem("email", email);
-          window.localStorage.setItem("firstName", res.data.email);
+          window.localStorage.setItem("firstName", res.data.first_name);
           window.location.pathname = "/";
         }
       }
