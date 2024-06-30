@@ -49,10 +49,11 @@ export default function Home() {
     const formData = new FormData();
     formData.append("image", inputFileRef.current.files[0]);
     formData.append("option", selectedOption);
+    formData.append("email", window.localStorage.email)
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/report/",
+        "http://127.0.0.1:8000/reports/",
         formData,
         {
           headers: {
