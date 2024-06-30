@@ -64,10 +64,11 @@ def login_user(request):
 
         user = authenticate(email=email, password=password)
 
+        first_name = User.objects.get(email=email).first_name
+
         if user is not None:
-            print("we got here!")
             login(request, user)
-            return JsonResponse({'success': 'User logged in successfully'}, status=200)
+            return JsonResponse({'first_name': first_name}, status=200)
         else:
             return JsonResponse({'error': 'Invalid email or password'}, status=400)
 
