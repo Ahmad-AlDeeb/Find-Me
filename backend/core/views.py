@@ -119,7 +119,7 @@ class ChildReportView(generics.CreateAPIView):
                     "first_name": child.user.first_name,
                     "last_name": child.user.last_name,
                     "phone": child.user.phone,
-                    "state": child.user.city,
+                    "state": child.user.state,
                     "city": child.user.city
                 },
                 "image": child.img.url
