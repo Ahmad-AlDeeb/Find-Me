@@ -2,7 +2,7 @@
 1. Clone the repository
 2. Create virtual environment `python -m venv venv`
 3. Activate virtual environment `venv/Scripts/activate`
-4. Install the project dependencies : `pip install django faker djangorestframework django-cors-headers`
+4. Install the project dependencies : `pip install django faker djangorestframework django-cors-headers opencv-python-headless numpy scikit-learn facenet-pytorch`
 5. Make Migrations `python manage.py makemigrations`
 6. Make Migrations for core app  `python manage.py makemigrations core`
 7. Apply Migrations `python manage.py migrate`

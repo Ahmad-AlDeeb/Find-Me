@@ -1,31 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import sadFaceImage from "./img/7.jpg";
+import { useLocation } from 'react-router-dom';
 import Header from "./components/Header";
 import "./confirm.css";
-import sadFaceImage from "./img/7.jpg";
 
 export default function Confirm() {
-  const [image, setImage] = useState(null);
   const [showSorryMessage, setShowSorryMessage] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchImage = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/getImage");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const imageBlob = await response.blob();
-        const imageObjectURL = URL.createObjectURL(imageBlob);
-        setImage(imageObjectURL);
-      } catch (error) {
-        console.error("There was a problem with fetching the image:", error);
-      }
-    };
-
-    fetchImage();
-  }, []);
+  const location = useLocation();
+  const { state } = location;
 
   const handleAnswer = async (answer) => {
     if (answer === "yes") {
@@ -49,14 +32,14 @@ export default function Confirm() {
       setShowSorryMessage(true);
     }
   };
-
+  
   return (
     <div>
-      <Header />
+      <Header/>
       <div className="conf">
         <div className="left-side">
-          {image ? (
-            <img src={image} alt="Fetched from server" className="image" />
+          {state.image ? (
+            <img src={`http://127.0.0.1:8000/${state.image}`} alt="Fetched from server" className="image" />
           ) : (
             <div className="loading-box">
               <div className="loading">
