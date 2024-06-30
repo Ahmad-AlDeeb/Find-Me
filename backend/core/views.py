@@ -91,21 +91,26 @@ class ChildReportView(generics.CreateAPIView):
         try:
             uploaded_image = request.FILES.get('img')
             child_status = request.data.get('status')
+            email = request.data.get('email')
 
             sub_dirs = {'F': 'lost_children', 'L': 'found_children'}
             database_dir = os.path.join(settings.MEDIA_ROOT, sub_dirs.get(child_status, ''))
-
             if not os.path.exists(database_dir):
                 os.makedirs(database_dir)
 
             result = compare_faces(uploaded_image, database_dir)
 
+            user = User.objects.get(email=email)
+            new_child = Child(user=user, status=child_status, img=uploaded_image)
+            new_child.save()
+
             if not result:
-                return Response({"message": "No similar image found in database."}, status=status.HTTP_404_NOT_FOUND)
+                return Response({"message": "No images"}, status=status.HTTP_404_NOT_FOUND)
 
             most_similar_filename = next(iter(result))
 
             child = Child.objects.filter(img__endswith=most_similar_filename).first()
+            print("====4 SUCCESS====")
 
             if child is None:
                 return Response({"message": "No matching children found."}, status=status.HTTP_404_NOT_FOUND)
@@ -121,8 +126,9 @@ class ChildReportView(generics.CreateAPIView):
                 "image": child.img.url
             }
 
+            print("====5 SUCCESS====")
+
             return Response(response, status=status.HTTP_200_OK)
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
