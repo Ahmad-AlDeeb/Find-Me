@@ -27,6 +27,7 @@ export default function Login() {
         if (res.status === 200) {
           window.localStorage.setItem("email", email);
           window.localStorage.setItem("firstName", res.data.first_name);
+          window.localStorage.setItem("id", res.data.id);
           window.location.pathname = "/";
         }
       }

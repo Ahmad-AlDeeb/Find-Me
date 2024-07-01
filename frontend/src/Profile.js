@@ -23,8 +23,10 @@ export default function Profile() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/update-profile",
+      const id = localStorage.getItem("id");
+      console.log(id);
+      const response = await axios.put(
+        `http://127.0.0.1:8000/users/${id}/`,
         formData
       );
       console.log("User data updated successfully:", response);
@@ -34,7 +36,6 @@ export default function Profile() {
       toast.error("Error updating profile.");
     }
   };
-
   return (
     <div>
       <Header />
@@ -93,8 +94,8 @@ export default function Profile() {
                 onChange={handleChange}
               />
             </div>
-            <div className="btn" style={{}}>
-              <button type="submit">Update </button>
+            <div className="btn">
+              <button type="submit">Update</button>
             </div>
           </form>
         </div>
