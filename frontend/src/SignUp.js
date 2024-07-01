@@ -54,7 +54,6 @@ export default function SignUp() {
           city: formData.city,
         });
         if (res.status === 200) {
-          window.localStorage.setItem("email", formData.email);
           window.location.pathname = "/login";
         }
       } catch (err) {
@@ -125,7 +124,7 @@ export default function SignUp() {
               onChange={handleChange}
             />
             {accept && errors.email && <p className="error">{errors.email}</p>}
-            {emailer === 422 && accept && (
+            {emailer === 400 && accept && (
               <p className="error">Email is already taken</p>
             )}
 

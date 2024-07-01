@@ -1,6 +1,6 @@
 .conf {
   display: flex;
-  height: 100%;
+  height: 86vh;
 }
 
 .left-side,
@@ -16,6 +16,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  height: 85vh;
 }
 
 .image {
@@ -107,4 +108,31 @@
   width: 150px;
   height: 170px;
   margin-bottom: 20px;
+}
+.user-details {
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.user-details h3 {
+  font-family: Arial, sans-serif;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 2;
+  border: 2px solid rgb(110, 104, 104);
+  margin-bottom: 15px;
+}
+.user-details h2:first-child {
+  margin-top: 0;
+}
+.back-button {
+  display: block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  font-size: 70px;
+  color: #c10c99;
 }

@@ -4,7 +4,7 @@ export default function Header() {
   function logout() {
     window.localStorage.removeItem("email");
     window.localStorage.removeItem("firstName");
-    window.location.pathname = "/register";
+    window.location.pathname = "/";
   }
 
   const firstName = window.localStorage.getItem("firstName");
@@ -37,15 +37,15 @@ export default function Header() {
               Register
             </Link>
             <Link to="/login" className="reg-nav">
-              login
+              Login
             </Link>
           </>
         ) : (
           <>
             <h2 className="acc"> Hi , {firstName}!</h2>
-            <Link to="/register" className="reg-nav" onClick={logout}>
-              logout
-            </Link>
+            <div to="/home" className="reg-nav" onClick={logout}>
+              Logout
+            </div>
           </>
         )}
       </div>

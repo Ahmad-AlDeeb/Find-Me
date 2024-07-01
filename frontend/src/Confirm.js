@@ -1,46 +1,33 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import sadFaceImage from "./img/7.jpg";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import "./confirm.css";
+import { Link } from "react-router-dom";
 
 export default function Confirm() {
   const [showSorryMessage, setShowSorryMessage] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const location = useLocation();
   const { state } = location;
-  const navigate = useNavigate
-
-  const handleAnswer = async (answer) => {
+  const handleAnswer = (answer) => {
     if (answer === "yes") {
-      try {
-        const response = await fetch("http://localhost:8000/result", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ answer }),
-        });
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        console.log("Answer submitted successfully");
-        navigate("/user-details");
-      } catch (error) {
-        console.error("There was a problem with your fetch operation:", error);
-      }
+      setShowSuccessMessage(true);
     } else if (answer === "no") {
       setShowSorryMessage(true);
     }
   };
-  
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="conf">
         <div className="left-side">
-          {state.image ? (
-            <img src={`http://127.0.0.1:8000/${state.image}`} alt="Fetched from server" className="image" />
+          {state && state.image ? (
+            <img
+              src={`http://127.0.0.1:8000/${state.image}`}
+              alt="Fetched from server"
+              className="image"
+            />
           ) : (
             <div className="loading-box">
               <div className="loading">
@@ -52,6 +39,9 @@ export default function Confirm() {
         <div className="right-side">
           <div className="parent">
             <div className="home">
+              <Link to="/" className="back-button">
+                <i className="bx bx-chevron-left"></i>
+              </Link>
               {showSorryMessage ? (
                 <form style={{ background: "black" }}>
                   <div className="sorry-message">
@@ -64,6 +54,28 @@ export default function Confirm() {
                       Sorry, but don't worry if someone found him he will
                       contact you.
                     </h2>
+                  </div>
+                </form>
+              ) : showSuccessMessage ? (
+                <form style={{ background: "black" }}>
+                  <div>
+                    <p>
+                      {state && state.user ? (
+                        <div className="user-details">
+                          <h2> user Details :- </h2>
+                          <h3> first Name / {state.user.first_name} </h3>
+                          <h3> Last Name / {state.user.last_name} </h3>
+                          <h3> Phone / {state.user.phone} </h3>
+                          <h3> State / {state.user.state} </h3>
+                        </div>
+                      ) : (
+                        <div className="loading-box">
+                          <div className="loading">
+                            Loading user<span className="spinner"></span>
+                          </div>
+                        </div>
+                      )}
+                    </p>
                   </div>
                 </form>
               ) : (
