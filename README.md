@@ -45,9 +45,10 @@
 # 🤔 To-do-list
 - About page
 - FAQ page
+- Edit tab title
 - User profile
+- Delete Account
 - Children endpoints
-- Resize uploaded image to specific size
 # 💀 Hard-list
 - JWT Authentication
 - Email confirmation
