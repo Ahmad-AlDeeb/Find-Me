@@ -83,6 +83,22 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    def update(self, request, *args, **kwargs):
+        if int(kwargs.get("pk")) != request.user.id:
+            return Response({"error": "Not authorized to do this action"}, status=status.HTTP_401_UNAUTHORIZED)
+
+        user = User.objects.get(pk=request.user.id) # old data
+        user.first_name = request.data.get("first_name")
+        user.last_name = request.data.get("last_name")
+        user.phone = request.data.get("phone")
+        user.state = request.data.get("state")
+        user.city = request.data.get("city")
+        user.save()
+
+        user_serializer = UserSerializer(user)
+
+        return Response({"user": user_serializer.data}, status=status.HTTP_200_OK)
+
 
 class ChildReportView(generics.CreateAPIView):
     parser_classes = (MultiPartParser, FormParser)
