@@ -124,7 +124,7 @@ export default function SignUp() {
               onChange={handleChange}
             />
             {accept && errors.email && <p className="error">{errors.email}</p>}
-            {emailer === 422 && accept && (
+            {emailer === 400 && accept && (
               <p className="error">Email is already taken</p>
             )}
 

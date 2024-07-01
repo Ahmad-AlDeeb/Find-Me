@@ -36,9 +36,13 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    if (!localStorage.getItem('email')) {
-      navigate("/Login")
+ const userEmail = window.localStorage.email;
+    if (!userEmail) {
+      toast.warn("please Login first !! ");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2500);
+      return;
     }
 
     if (!selectedOption) {
@@ -54,7 +58,7 @@ export default function Home() {
     const formData = new FormData();
     formData.append("img", inputFileRef.current.files[0]);
     formData.append("status", selectedOption);
-    formData.append("email", window.localStorage.email);
+    formData.append("email", userEmail);
 
     try {
       const response = await axios.post(
@@ -69,7 +73,7 @@ export default function Home() {
       console.log("Image uploaded successfully:", response);
       toast.success("Image uploaded successfully!");
       navigate("/confirm", {
-        state: { image: response.data.image },
+        state: { image: response.data.image, user: response.data.user },
       });
     } catch (error) {
       console.error("Error uploading image:", error);

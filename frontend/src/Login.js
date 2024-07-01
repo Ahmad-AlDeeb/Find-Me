@@ -34,7 +34,6 @@ export default function Login() {
       setemailer(err.response.status);
     }
   }
-
   return (
     <div style={{ background: "black", height: "100vh", overflow: "hidden" }}>
       <>
@@ -50,6 +49,7 @@ export default function Login() {
               marginTop: "20px",
               marginRight: "15px",
               borderRadius: "10px",
+              //visibility: "hidden",
             }}
           />
           <form onSubmit={submit}>
@@ -89,7 +89,7 @@ export default function Login() {
             {password.length < 8 && accept && (
               <p className="error">pass must be more than 8 char</p>
             )}
-            {emailer === 400 && accept && (
+            {emailer === 500 && accept && (
               <p className="error"> email or password invaild</p>
             )}
             <div className="btn">
