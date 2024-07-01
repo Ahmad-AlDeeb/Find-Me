@@ -15,9 +15,9 @@ export default function Header() {
   const firstName = window.localStorage.getItem("firstName");
 
   const handleProfileClick = async () => {
-    const userEmail = window.localStorage.getItem("email");
-    if (!userEmail) {
-      toast.warn("please Login first !! ");
+    const id = window.localStorage.getItem("id");
+    if (!id) {
+      toast.warn("Please log in first!");
       setTimeout(() => {
         navigate("/login");
       }, 2500);
@@ -25,9 +25,7 @@ export default function Header() {
     }
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/profile", {
-        email: userEmail,
-      });
+      const response = await axios.get(`http://127.0.0.1:8000/users/${id}/`);
       console.log("User data fetched successfully:", response);
       navigate("/profile", {
         state: { userData: response.data },

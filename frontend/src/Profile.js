@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,7 +8,6 @@ import "./style.css";
 
 export default function Profile() {
   const { state } = useLocation();
-  const navigate = useNavigate();
   const { userData } = state || {};
   const [formData, setFormData] = useState(userData || {});
 
@@ -23,9 +22,18 @@ export default function Profile() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/update-profile",
-        formData
+      const id = localStorage.getItem("id");
+      const updatedFormData = new FormData();
+      updatedFormData.append("id", id);
+      updatedFormData.append("first_name", formData.first_name);
+      updatedFormData.append("last_name", formData.last_name);
+      updatedFormData.append("phone", formData.phone);
+      updatedFormData.append("state", formData.state);
+      updatedFormData.append("city", formData.city);
+
+      const response = await axios.put(
+        `http://127.0.0.1:8000/users/${id}/`,
+        updatedFormData,
       );
       console.log("User data updated successfully:", response);
       toast.success("Profile updated successfully!");
@@ -34,7 +42,6 @@ export default function Profile() {
       toast.error("Error updating profile.");
     }
   };
-
   return (
     <div>
       <Header />
@@ -93,8 +100,8 @@ export default function Profile() {
                 onChange={handleChange}
               />
             </div>
-            <div className="btn" style={{}}>
-              <button type="submit">Update </button>
+            <div className="btn">
+              <button type="submit">Update</button>
             </div>
           </form>
         </div>

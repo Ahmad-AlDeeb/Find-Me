@@ -27,6 +27,7 @@ export default function Login() {
         if (res.status === 200) {
           window.localStorage.setItem("email", email);
           window.localStorage.setItem("firstName", res.data.first_name);
+          window.localStorage.setItem("id", res.data.id);
           window.location.pathname = "/";
         }
       }
@@ -59,7 +60,7 @@ export default function Login() {
               Sign in
             </div>
             <div style={{ fontSize: "18px" }}>
-              If you don’t have an account register you can:
+              If you don’t have an account, you can:
             </div>
             <Link
               to="/register"
@@ -71,20 +72,20 @@ export default function Login() {
             >
               Register here!
             </Link>
-            <label htmlFor="email"> Email :</label>
+            <label htmlFor="email"> Email:</label>
             <input
               id="email"
               type="email"
-              placeholder="Enter your email address"
+              placeholder=" Enter your email address"
               required
               value={email}
               onChange={(e) => setemail(e.target.value)}
             />
-            <label htmlFor="pass"> Password :</label>
+            <label htmlFor="pass"> Password:</label>
             <input
               id="pass"
               type="password"
-              placeholder="Enter your Password"
+              placeholder=" Enter your password"
               value={password}
               onChange={(e) => setpassword(e.target.value)}
             />
