@@ -35,7 +35,9 @@ export default function Login() {
     }
   }
   return (
-    <div style={{ background: "black", height: "100vh", overflow: "hidden" }}>
+    <div
+    // style={{ background: "black", height: "100vh", overflow: "hidden" }}
+    >
       <>
         <Header />
       </>
@@ -49,7 +51,7 @@ export default function Login() {
               marginTop: "20px",
               marginRight: "15px",
               borderRadius: "10px",
-              //visibility: "hidden",
+              visibility: "hidden",
             }}
           />
           <form onSubmit={submit}>
@@ -57,17 +59,17 @@ export default function Login() {
               Sign in
             </div>
             <div style={{ fontSize: "18px" }}>
-              If you don’t have an account register you can :-
+              If you don’t have an account register you can:
             </div>
             <Link
               to="/register"
               style={{
-                color: "#C10C99",
+                color: "#4d47c3",
                 fontSize: "18px",
                 marginBottom: "20px",
               }}
             >
-              Register here !
+              Register here!
             </Link>
             <label htmlFor="email"> Email :</label>
             <input
@@ -93,7 +95,7 @@ export default function Login() {
               <p className="error"> email or password invaild</p>
             )}
             <div className="btn">
-              <button type="submit">login</button>
+              <button type="submit">Login</button>
             </div>
           </form>
         </div>

@@ -57,16 +57,17 @@ export default function Confirm() {
                   </div>
                 </form>
               ) : showSuccessMessage ? (
-                <form style={{ background: "black" }}>
+                <form>
                   <div>
                     <p>
                       {state && state.user ? (
                         <div className="user-details">
-                          <h2> user Details :- </h2>
-                          <h3> first Name / {state.user.first_name} </h3>
-                          <h3> Last Name / {state.user.last_name} </h3>
-                          <h3> Phone / {state.user.phone} </h3>
-                          <h3> State / {state.user.state} </h3>
+                          <h1> User Details </h1>
+                          <h3> First Name: {state.user.first_name} </h3>
+                          <h3> Last Name: {state.user.last_name} </h3>
+                          <h3> Phone: {state.user.phone} </h3>
+                          <h3> State: {state.user.state} </h3>
+                          <h3> City: {state.user.city} </h3>
                         </div>
                       ) : (
                         <div className="loading-box">
@@ -81,13 +82,14 @@ export default function Confirm() {
               ) : (
                 <form>
                   <div className="text">
-                    <h3>This is the best match we could find.</h3>
+                    <h2>This is the best match we could find.</h2>
                     <h2>
                       <strong>Is he/she the same child?</strong>
                     </h2>
                   </div>
                   <div className="buttons-home">
                     <button
+                      style={{ marginRight: "10px" }}
                       type="button"
                       className="yes-button"
                       onClick={() => handleAnswer("yes")}
@@ -102,7 +104,6 @@ export default function Confirm() {
                       No
                     </button>
                   </div>
-                  <div className="btn"></div>
                 </form>
               )}
             </div>

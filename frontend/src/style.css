@@ -2,7 +2,7 @@ body {
   font-family: "Oswald", sans-serif;
   margin: 0;
   color: white;
-  background-image: url("./img/3.jpg");
+  background-image: url("./img/8.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -13,16 +13,48 @@ body {
   margin: 0 auto;
 }
 
+.login {
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.login form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+  margin: auto;
+}
+.login input {
+  width: calc(100% - 20px);
+  background: white;
+  color: black;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-size: 22px;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid #a7a3ff;
+  outline: none;
+}
+.login button {
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.5s;
+  padding: 10px 50px;
+}
 .register {
   display: flex;
   margin-left: auto;
 }
-.login {
-  display: flex;
-  align-items: center;
-}
-.register form,
-.login form {
+
+.register form {
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -31,48 +63,51 @@ body {
   margin-right: 2%;
 }
 
-.register input,
-.login input {
+.register input {
   width: calc(100% - 20px);
-  background: black;
-  color: white;
+  background: white;
+  color: black;
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-size: 16px;
   border: none;
-  border-radius: 0;
+  border-radius: 8px;
   box-sizing: border-box;
   border-bottom: 1px solid white;
-  outline: none;
-}
-.btn {
-  display: flex;
 }
 
-.register button,
-.login button {
+.register button {
   margin: 0 auto;
-  padding: 12px;
+  padding: 8px 50px;
   font-size: 16px;
   font-weight: bold;
-  color: white;
-  background: #c10c99;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
   transition: 0.5s;
 }
+.btn {
+  display: flex;
+}
 
 .register button,
 .login button:hover {
-  background: #86096b;
+  background: #302b90;
   letter-spacing: 1px;
 }
 
 .register button,
 .login button:active {
-  background: green;
+  background: black;
+}
+.text-reg {
+  padding: 15px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 3px;
 }
 
 .error {
@@ -102,10 +137,9 @@ body {
   display: flex;
   flex-direction: column;
   padding: 50px;
-  background: rgb(40, 40, 40);
   color: white;
   border-radius: 20px;
-  box-shadow: 0px 2px 15px white;
+  box-shadow: 0px 2px 15px black;
   letter-spacing: 2px;
 }
 .home input {
@@ -121,26 +155,26 @@ body {
 }
 
 .home button {
-  margin: 0 auto;
-  width: 50%;
+  margin: auto;
+  width: 45%;
   padding: 12px;
   font-size: 20px;
   font-weight: bold;
   color: white;
-  background: #c10c99;
+  background: #4d47c3;
   border: none;
-  border-radius: 18px;
+  border-radius: 180px;
   cursor: pointer;
   text-decoration: none;
   transition: 0.5s;
 }
 .home button:hover {
-  background: #86096b;
+  background: #302b90;
   letter-spacing: 2px;
 }
 
 .home button:active {
-  background: green;
+  background: black;
 }
 .state {
   margin-left: 15px;
@@ -162,5 +196,5 @@ body {
 
 .state select:focus {
   outline: none;
-  border-color: #c10c99;
+  border-color: #4d47c3;
 }

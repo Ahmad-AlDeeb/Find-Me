@@ -3,6 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: black;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
 }
 
 .home {
@@ -20,10 +24,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: black;
+  background: white;
+  color: black;
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 20px;
+  box-shadow: 0px 2px 20px #4d47c3;
 }
 
 .img-area img {
@@ -34,19 +40,18 @@
 
 .icon {
   font-size: 400%;
-  color: #c10c99;
+  color: #4d47c3;
 }
 
 .select-image,
 .btn button {
-  background-color: #007bff;
+  background-color: #4d47c3;
   color: #fff;
-  padding: 10px 20px;
   border: none;
   cursor: pointer;
 }
 
 .select-image:hover,
 .btn button:hover {
-  background-color: #c10c99;
+  background-color: #302b90;
 }

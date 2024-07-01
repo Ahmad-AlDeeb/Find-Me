@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
@@ -36,9 +36,9 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
- const userEmail = window.localStorage.email;
+    const userEmail = window.localStorage.email;
     if (!userEmail) {
-      toast.warn("please Login first !! ");
+      toast.warn("Please log in first!");
       setTimeout(() => {
         navigate("/login");
       }, 2500);

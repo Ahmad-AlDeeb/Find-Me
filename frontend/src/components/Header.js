@@ -1,6 +1,11 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   function logout() {
     window.localStorage.removeItem("email");
     window.localStorage.removeItem("firstName");
@@ -8,6 +13,30 @@ export default function Header() {
   }
 
   const firstName = window.localStorage.getItem("firstName");
+
+  const handleProfileClick = async () => {
+    const userEmail = window.localStorage.getItem("email");
+    if (!userEmail) {
+      toast.warn("please Login first !! ");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2500);
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/profile", {
+        email: userEmail,
+      });
+      console.log("User data fetched successfully:", response);
+      navigate("/profile", {
+        state: { userData: response.data },
+      });
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      toast.error("Error fetching user data.");
+    }
+  };
 
   return (
     <nav className="d-flex">
@@ -22,9 +51,9 @@ export default function Header() {
         </div>
       </div>
       <div className="element">
-        <Link to="/" className="element-nav">
+        {/* <Link to="/" className="element-nav">
           Home
-        </Link>
+        </Link> */}
       </div>
       <div className="d-flex">
         {!window.localStorage.getItem("email") ? (
@@ -42,7 +71,9 @@ export default function Header() {
           </>
         ) : (
           <>
-            <h2 className="acc"> Hi , {firstName}!</h2>
+            <div className="acc" onClick={handleProfileClick}>
+              Hi, {firstName}
+            </div>
             <div to="/home" className="reg-nav" onClick={logout}>
               Logout
             </div>
