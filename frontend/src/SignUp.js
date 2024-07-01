@@ -80,19 +80,21 @@ export default function SignUp() {
               marginRight: "100px",
             }}
           >
-            <div style={{ fontSize: "40px", margin: "10px" }}>Sign up</div>
-            <div style={{ fontSize: "30px" }}>
-              If you already have an account register you can:- ____
+            <div className="text-reg">
+              <div style={{ fontSize: "40px", margin: "10px" }}>Sign up</div>
+              <div style={{ fontSize: "30px" }}>
+                If you already have an account register you can: ____
+              </div>
+              <Link
+                to="/login"
+                style={{
+                  color: "#4d47c3",
+                  fontSize: "35px",
+                }}
+              >
+                Login here!
+              </Link>
             </div>
-            <Link
-              to="/login"
-              style={{
-                color: "#C10C99",
-                fontSize: "35px",
-              }}
-            >
-              login here!
-            </Link>
           </div>
           <form onSubmit={submit}>
             <label htmlFor="Fname">First Name:</label>

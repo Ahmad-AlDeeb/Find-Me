@@ -4,7 +4,7 @@
   font-size: 16px;
   font-weight: bold;
   color: white;
-  background: #c10c99;
+  background: #4d47c3;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -13,30 +13,30 @@
   margin-right: 50px;
 }
 .reg-nav:hover {
-  background: #86096b;
+  background: #302b90;
   letter-spacing: 1px;
 }
 .reg-nav:active {
-  background: green;
+  background: black;
 }
 .title {
   font-size: 40px;
   font-weight: bold;
   display: flex;
-  color: #c10c99;
+  color: #4d47c3;
   margin-left: 50px;
 }
 .find {
   border-radius: 15px;
-  background: #c10c99;
-  color: #000;
+  background: #4d47c3;
+  color: white;
   padding: 3px 3px;
   letter-spacing: 2px;
   text-decoration: none;
 }
 
 .me {
-  color: white;
+  color: black;
   margin-left: 10px;
   letter-spacing: 2px;
   text-decoration: none;
@@ -63,13 +63,15 @@
 }
 
 .element-nav:hover {
-  color: #c10c99;
+  color: #4d47c3;
   letter-spacing: 1.5px;
 }
 
 .acc {
   font-size: 30px;
   font-weight: bold;
-  color: #c10c99;
-  margin: 15px;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 10px;
 }
