@@ -60,7 +60,7 @@ export default function Login() {
               Sign in
             </div>
             <div style={{ fontSize: "18px" }}>
-              If you don’t have an account register you can:
+              If you don’t have an account, you can:
             </div>
             <Link
               to="/register"
@@ -72,7 +72,7 @@ export default function Login() {
             >
               Register here!
             </Link>
-            <label htmlFor="email"> Email :</label>
+            <label htmlFor="email"> Email:</label>
             <input
               id="email"
               type="email"
@@ -81,11 +81,11 @@ export default function Login() {
               value={email}
               onChange={(e) => setemail(e.target.value)}
             />
-            <label htmlFor="pass"> Password :</label>
+            <label htmlFor="pass"> Password:</label>
             <input
               id="pass"
               type="password"
-              placeholder="Enter your Password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setpassword(e.target.value)}
             />
