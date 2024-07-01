@@ -8,7 +8,6 @@ import "./style.css";
 
 export default function Profile() {
   const { state } = useLocation();
-  const navigate = useNavigate();
   const { userData } = state || {};
   const [formData, setFormData] = useState(userData || {});
 
