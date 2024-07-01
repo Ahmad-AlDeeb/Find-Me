@@ -8,13 +8,13 @@
 - Get location and phone number of `Parent` who lost his child (success case✅).
 - Receive notification when the lost child's parent is found (failure case ❌).
 # 🔵Endpoints
-## Frontend:
+## Frontend
 - Login page: `GET localhost:3000/login`.
 - Create account page: `GET localhost:3000/register`.
 - Home page: `GET localhost:3000`.
 - Report page: `GET localhost:3000/report`.
 - Result page: `GET localhost:3000/result`.
-## Backend:
+## Backend
 - Login: `POST localhost:8000/login/`.
 - Create account: `POST localhost:8000/register/`.
 - Send report: `POST localhost:8000/report/`.
@@ -36,6 +36,12 @@
 	- `img_url`.
 	- `status`.
  	- `is_found`.
+# 🎬 Demos
+- Create new account and log in (admin & frontend)
+- View & Update profile (admin & frontend)
+- Delete account (admin & frontend)
+- Report lost child with NO/YES answer
+- Report found child with NO/YES answer
 # 🤔 To-do-list
 - About page
 - FAQ page
