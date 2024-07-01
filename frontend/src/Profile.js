@@ -24,10 +24,17 @@ export default function Profile() {
     event.preventDefault();
     try {
       const id = localStorage.getItem("id");
-      console.log(id);
+      const updatedFormData = new FormData();
+      updatedFormData.append("id", id);
+      updatedFormData.append("first_name", formData.first_name);
+      updatedFormData.append("last_name", formData.last_name);
+      updatedFormData.append("phone", formData.phone);
+      updatedFormData.append("state", formData.state);
+      updatedFormData.append("city", formData.city);
+
       const response = await axios.put(
         `http://127.0.0.1:8000/users/${id}/`,
-        formData
+        updatedFormData,
       );
       console.log("User data updated successfully:", response);
       toast.success("Profile updated successfully!");

@@ -82,10 +82,12 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     def update(self, request, *args, **kwargs):
-        if int(kwargs.get("pk")) != request.user.id:
+        id = request.data.get("id")
+
+        if kwargs.get("pk") != id:
             return Response({"error": "Not authorized to do this action"}, status=status.HTTP_401_UNAUTHORIZED)
 
-        user = User.objects.get(pk=request.user.id) # old data
+        user = User.objects.get(pk=id) # old data
         user.first_name = request.data.get("first_name")
         user.last_name = request.data.get("last_name")
         user.phone = request.data.get("phone")
