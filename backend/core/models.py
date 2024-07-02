@@ -3,6 +3,8 @@ from telnetlib import STATUS
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
@@ -55,9 +57,9 @@ class Child(models.Model):
     status = models.CharField(max_length=1, choices=STATE_CHOICES)
     is_found = models.BooleanField(default=False)
 
-    def delete(self, *args, **kwargs):
-        # Check if there is an image and if it exists on the filesystem
-        if self.img and os.path.isfile(self.img.path):
-            os.remove(self.img.path)
-        # Call the superclass delete method to delete the object from the database
-        super(Child, self).delete(*args, **kwargs)
+
+@receiver(post_delete, sender=Child)
+def delete_child_image(sender, instance, **kwargs):
+    if instance.img:
+        if os.path.isfile(instance.img.path):
+            os.remove(instance.img.path)
