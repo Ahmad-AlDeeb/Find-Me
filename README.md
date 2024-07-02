@@ -45,10 +45,10 @@
 # 🤔 To-do-list
 - About page
 - FAQ page
-- Edit tab title
-- User profile
 - Delete Account
 - Children endpoints
+- Hover effect on first name in hi message
+- Return NO results when there are no similar images
 # 💀 Hard-list
 - JWT Authentication
 - Email confirmation
