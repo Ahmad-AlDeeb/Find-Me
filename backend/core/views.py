@@ -115,23 +115,28 @@ class ChildReportView(generics.CreateAPIView):
             if not os.path.exists(database_dir):
                 os.makedirs(database_dir)
 
-            result = compare_faces(uploaded_image, database_dir)
+            image_name, percentage = compare_faces(uploaded_image, database_dir)
 
+            # fix percentage errors
+            percentage = int(percentage) if percentage > 100 else percentage
             user = User.objects.get(email=email)
             new_child = Child(user=user, status=child_status, img=uploaded_image)
             new_child.save()
 
-            if not result:
-                return Response({"message": "No images"}, status=status.HTTP_404_NOT_FOUND)
+            if not image_name:
+                return Response({"message": "Sorry, no images matches your request"}, status=status.HTTP_404_NOT_FOUND)
 
-            most_similar_filename = next(iter(result))
-
-            child = Child.objects.filter(img__endswith=most_similar_filename).first()
-
+            child = Child.objects.filter(img__endswith=image_name).first()
+            print(image_name)
+            print(child)
             if child is None:
                 return Response({"message": "No matching children found."}, status=status.HTTP_404_NOT_FOUND)
 
             response = {
+                "data": {
+                    "image": child.img.url,
+                    "percentage": percentage,
+                },
                 "user": {
                     "first_name": child.user.first_name,
                     "last_name": child.user.last_name,
@@ -139,7 +144,6 @@ class ChildReportView(generics.CreateAPIView):
                     "state": child.user.state,
                     "city": child.user.city
                 },
-                "image": child.img.url
             }
 
             return Response(response, status=status.HTTP_200_OK)
