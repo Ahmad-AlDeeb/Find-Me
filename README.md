@@ -49,6 +49,7 @@
 - Children endpoints
 - Hover effect on first name in hi message
 - Return NO results when there are no similar images
+- Show proper error message when wrong login credentials are entered
 # 💀 Hard-list
 - JWT Authentication
 - Email confirmation
