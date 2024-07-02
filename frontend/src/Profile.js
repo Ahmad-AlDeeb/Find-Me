@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,9 +7,21 @@ import Header from "./components/Header";
 import "./style.css";
 
 export default function Profile() {
+  function logout() {
+    toast.success("Profile updated successfully! ");
+    setTimeout(() => {
+      toast.warn("Please log in again");
+    }, 2000);
+    setTimeout(() => {
+      setRedirect(true);
+      window.localStorage.removeItem("email");
+      window.localStorage.removeItem("firstName");
+    }, 4000);
+  }
   const { state } = useLocation();
   const { userData } = state || {};
   const [formData, setFormData] = useState(userData || {});
+  const [redirect, setRedirect] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,15 +45,19 @@ export default function Profile() {
 
       const response = await axios.put(
         `http://127.0.0.1:8000/users/${id}/`,
-        updatedFormData,
+        updatedFormData
       );
       console.log("User data updated successfully:", response);
-      toast.success("Profile updated successfully!");
     } catch (error) {
       console.error("Error updating profile:", error);
       toast.error("Error updating profile.");
     }
   };
+
+  if (redirect) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div>
       <Header />
@@ -101,7 +117,9 @@ export default function Profile() {
               />
             </div>
             <div className="btn">
-              <button type="submit">Update</button>
+              <button to="/login" type="submit" onClick={logout}>
+                Update
+              </button>
             </div>
           </form>
         </div>
