@@ -52,6 +52,7 @@
 - Show proper error message when wrong login credentials are entered
 - Users created by admin cannot log in\
 - Fix error when closing window without choosing an image
+- Error when reporting a new image of a new person
 # 💀 Hard-list
 - JWT Authentication
 - Email confirmation
