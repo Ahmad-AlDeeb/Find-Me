@@ -64,7 +64,7 @@
 
 .element-nav:hover {
   color: #4d47c3;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
 }
 
 .acc {
@@ -74,8 +74,10 @@
   cursor: pointer;
   text-decoration: none;
   margin: 10px;
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
 }
+
 .acc:hover {
-  color: lightgray;
-  letter-spacing: 1px;
+  color: white;
+  letter-spacing: 2px;
 }
