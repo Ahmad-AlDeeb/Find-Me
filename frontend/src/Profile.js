@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, Navigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,21 +7,10 @@ import Header from "./components/Header";
 import "./style.css";
 
 export default function Profile() {
-  function logout() {
-    toast.success("Profile updated successfully! ");
-    setTimeout(() => {
-      toast.warn("Please log in again");
-    }, 2000);
-    setTimeout(() => {
-      setRedirect(true);
-      window.localStorage.removeItem("email");
-      window.localStorage.removeItem("firstName");
-    }, 4000);
-  }
   const { state } = useLocation();
   const { userData } = state || {};
   const [formData, setFormData] = useState(userData || {});
-  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -48,22 +37,24 @@ export default function Profile() {
         updatedFormData
       );
       console.log("User data updated successfully:", response);
+      window.localStorage.setItem("firstName", formData.first_name);
+      toast.success("Profile updated successfully!");
+      setTimeout(() => {
+        navigate("/profile");
+      }, 2000);
     } catch (error) {
       console.error("Error updating profile:", error);
       toast.error("Error updating profile.");
     }
   };
 
-  if (redirect) {
-    return <Navigate to="/login" />;
-  }
-
   return (
     <div>
       <Header />
       <div className="parent">
-        <div className="login">
+        <div className="profile">
           <ToastContainer />
+
           <form onSubmit={handleSubmit}>
             <h1 className="title-profile">Update Profile</h1>
             <div>
@@ -117,9 +108,7 @@ export default function Profile() {
               />
             </div>
             <div className="btn">
-              <button to="/login" type="submit" onClick={logout}>
-                Update
-              </button>
+              <button type="submit">Update</button>
             </div>
           </form>
         </div>
