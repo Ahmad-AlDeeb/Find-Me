@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import Header from "./components/Header";
 import { Link } from "react-router-dom";
-import img from "./img/4.jpg";
 
 export default function Login() {
   const [email, setemail] = useState("");
@@ -36,25 +35,12 @@ export default function Login() {
     }
   }
   return (
-    <div
-    // style={{ background: "black", height: "100vh", overflow: "hidden" }}
-    >
+    <div>
       <>
         <Header />
       </>
       <div className="parent">
         <div className="login">
-          <img
-            src={img}
-            alt=""
-            style={{
-              width: "60%",
-              marginTop: "20px",
-              marginRight: "15px",
-              borderRadius: "10px",
-              visibility: "hidden",
-            }}
-          />
           <form onSubmit={submit}>
             <div style={{ fontSize: "40px", marginBottom: "20px" }}>
               Sign in

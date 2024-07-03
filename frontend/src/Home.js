@@ -38,7 +38,7 @@ export default function Home() {
     event.preventDefault();
     const userEmail = window.localStorage.email;
     if (!userEmail) {
-      toast.warn("please Login first !! ");
+      toast.warn("Please log in first!");
       setTimeout(() => {
         navigate("/login");
       }, 2500);
