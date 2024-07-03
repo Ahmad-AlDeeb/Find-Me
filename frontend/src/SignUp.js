@@ -80,7 +80,7 @@ export default function SignUp() {
               <div className="text-reg">
                 <div style={{ fontSize: "40px", margin: "10px" }}>Sign up</div>
                 <div style={{ fontSize: "16px" }}>
-                  If you already have an account register you can:
+                  If you already have an account, you can:
                 </div>
                 <Link
                   to="/login"
