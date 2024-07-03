@@ -12,7 +12,7 @@ body {
   padding: 0 0px;
   margin: 0 auto;
 }
-
+.register,
 .login {
   display: flex;
   align-items: center;
@@ -32,6 +32,17 @@ body {
   box-shadow: 0px 2px 20px #4d47c3;
   backdrop-filter: blur(1px);
 }
+.register form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+  margin: 3%;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0px 2px 20px #4d47c3;
+  backdrop-filter: blur(1px);
+}
 .login input {
   width: calc(100% - 20px);
   background: white;
@@ -45,6 +56,22 @@ body {
   border: 1px solid #a7a3ff;
   outline: none;
 }
+.register input {
+  width: 80%;
+  margin-left: 50px;
+  background: white;
+  color: black;
+  padding: 2px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid #a7a3ff;
+  outline: none;
+}
+
+.register button,
 .login button {
   margin: 0 auto;
   font-size: 16px;
@@ -54,44 +81,6 @@ body {
   text-decoration: none;
   transition: 0.5s;
   padding: 10px 50px;
-}
-.register {
-  display: flex;
-  margin-left: auto;
-}
-
-.register form {
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  letter-spacing: 1px;
-  margin: 0 auto;
-  margin-right: 2%;
-}
-
-.register input {
-  width: calc(100% - 20px);
-  background: white;
-  color: black;
-  padding: 5px;
-  margin-bottom: 8px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  box-sizing: border-box;
-  border-bottom: 1px solid white;
-}
-
-.register button {
-  margin: 0 auto;
-  padding: 8px 50px;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: 0.5s;
 }
 .btn {
   display: flex;

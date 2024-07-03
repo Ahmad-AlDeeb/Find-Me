@@ -75,29 +75,27 @@ export default function SignUp() {
       <Header />
       <div className="parent">
         <div className="register">
-          <div
-            style={{
-              marginRight: "100px",
-            }}
-          >
-            <div className="text-reg">
-              <div style={{ fontSize: "40px", margin: "10px" }}>Sign up</div>
-              <div style={{ fontSize: "30px" }}>
-                If you already have an account register you can: ____
-              </div>
-              <Link
-                to="/login"
-                style={{
-                  color: "#4d47c3",
-                  fontSize: "35px",
-                }}
-              >
-                Login here!
-              </Link>
-            </div>
-          </div>
           <form onSubmit={submit}>
-            <label htmlFor="Fname">First Name:</label>
+            <div>
+              <div className="text-reg">
+                <div style={{ fontSize: "40px", margin: "10px" }}>Sign up</div>
+                <div style={{ fontSize: "16px" }}>
+                  If you already have an account, you can:
+                </div>
+                <Link
+                  to="/login"
+                  style={{
+                    color: "#4d47c3",
+                    fontSize: "18px",
+                  }}
+                >
+                  Login here!
+                </Link>
+              </div>
+            </div>
+            <label style={{ marginLeft: "50px" }} htmlFor="Fname">
+              First Name:
+            </label>
             <input
               id="Fname"
               type="text"
@@ -107,7 +105,9 @@ export default function SignUp() {
             />
             {accept && errors.Fname && <p className="error">{errors.Fname}</p>}
 
-            <label htmlFor="Lname">Last Name:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="Lname">
+              Last Name:
+            </label>
             <input
               id="Lname"
               type="text"
@@ -117,7 +117,9 @@ export default function SignUp() {
             />
             {accept && errors.Lname && <p className="error">{errors.Lname}</p>}
 
-            <label htmlFor="email">Email:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="email">
+              Email:
+            </label>
             <input
               id="email"
               type="email"
@@ -130,7 +132,9 @@ export default function SignUp() {
               <p className="error">Email is already taken</p>
             )}
 
-            <label htmlFor="password">Password:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="password">
+              Password:
+            </label>
             <input
               id="password"
               type="password"
@@ -142,7 +146,9 @@ export default function SignUp() {
               <p className="error">{errors.password}</p>
             )}
 
-            <label htmlFor="repassword">Confirm Password:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="repassword">
+              Confirm Password:
+            </label>
             <input
               id="repassword"
               type="password"
@@ -154,7 +160,9 @@ export default function SignUp() {
               <p className="error">{errors.repassword}</p>
             )}
 
-            <label htmlFor="phone">Phone Number:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="phone">
+              Phone Number:
+            </label>
             <input
               id="phone"
               type="text"
@@ -164,7 +172,9 @@ export default function SignUp() {
             />
             {accept && errors.phone && <p className="error">{errors.phone}</p>}
 
-            <label htmlFor="state">State:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="state">
+              State:
+            </label>
             <input
               id="state"
               type="text"
@@ -174,7 +184,9 @@ export default function SignUp() {
             />
             {accept && errors.state && <p className="error">{errors.state}</p>}
 
-            <label htmlFor="city">City:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="city">
+              City:
+            </label>
             <input
               id="city"
               type="text"
