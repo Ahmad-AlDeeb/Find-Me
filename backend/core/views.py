@@ -66,7 +66,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return JsonResponse({'first_name': user.first_name, 'id': user.id }, status=200)
+            return JsonResponse({'first_name': user.first_name, 'id': user.id}, status=200)
         else:
             return JsonResponse({'error': 'Invalid email or password'}, status=400)
 
@@ -87,7 +87,7 @@ class UserViewSet(viewsets.ModelViewSet):
         if kwargs.get("pk") != id:
             return Response({"error": "Not authorized to do this action"}, status=status.HTTP_401_UNAUTHORIZED)
 
-        user = User.objects.get(pk=id) # old data
+        user = User.objects.get(pk=id)  # old data
         user.first_name = request.data.get("first_name")
         user.last_name = request.data.get("last_name")
         user.phone = request.data.get("phone")
@@ -110,28 +110,33 @@ class ChildReportView(generics.CreateAPIView):
             child_status = request.data.get('status')
             email = request.data.get('email')
 
+            # Get the directory we will search into and compare with the image user uploaded
             sub_dirs = {'F': 'lost_children', 'L': 'found_children'}
             database_dir = os.path.join(settings.MEDIA_ROOT, sub_dirs.get(child_status, ''))
             if not os.path.exists(database_dir):
                 os.makedirs(database_dir)
 
+            # Compare uploaded image with target directory and return image name/path and matching percentage
             image_name, percentage = compare_faces(uploaded_image, database_dir)
 
-            # fix percentage errors
-            percentage = int(percentage) if percentage > 100 else percentage
+            # Create child instance for image user uploaded and  save it to database
             user = User.objects.get(email=email)
             new_child = Child(user=user, status=child_status, img=uploaded_image)
             new_child.save()
 
-            if not image_name:
-                return Response({"message": "Sorry, no images matches your request"}, status=status.HTTP_404_NOT_FOUND)
-
-            child = Child.objects.filter(img__endswith=image_name).first()
+            # Check if database is emtpy or if there are no similar enough image
             print(image_name)
-            print(child)
-            if child is None:
-                return Response({"message": "No matching children found."}, status=status.HTTP_404_NOT_FOUND)
+            print(percentage)
+            if not image_name or percentage < 60:
+                return Response({"message": "Sorry, no images match your request"}, status=status.HTTP_404_NOT_FOUND)
 
+            # Get the child instance of the image found in database
+            child = Child.objects.filter(img__endswith=image_name).first()
+
+            # Fix percentage errors
+            percentage = int(percentage) if percentage > 100 else percentage
+
+            # Build and return the response
             response = {
                 "data": {
                     "image": child.img.url,
@@ -145,7 +150,6 @@ class ChildReportView(generics.CreateAPIView):
                     "city": child.user.city
                 },
             }
-
             return Response(response, status=status.HTTP_200_OK)
 
         except Exception as e:
