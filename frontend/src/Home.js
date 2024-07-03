@@ -74,18 +74,15 @@ export default function Home() {
       );
 
       const percentage = response.data.data.percentage;
-      if (percentage < 30) {
-        setNoMatch(true);
-      } else {
-        toast.success("Image uploaded successfully!");
-        navigate("/confirm", {
-          state: {
-            image: response.data.data.image,
-            user: response.data.user,
-            percentage: percentage,
-          },
-        });
-      }
+
+      toast.success("Image uploaded successfully!");
+      navigate("/confirm", {
+        state: {
+          image: response.data.data.image,
+          user: response.data.user,
+          percentage: percentage,
+        },
+      });
     } catch (error) {
       console.error("Error uploading image:", error);
       setNoMatch(true);
@@ -155,10 +152,14 @@ export default function Home() {
                 ) : (
                   <>
                     <i className="bx bxs-cloud-upload icon"></i>
-                    <h3 >
-                      {noMatch
-                        ? <h5 className='match'><strong>Sorry, No images match request.</strong></h5>
-                        : "Upload Image"}
+                    <h3>
+                      {noMatch ? (
+                        <h5 className="match">
+                          <strong>Sorry, No images match request.</strong>
+                        </h5>
+                      ) : (
+                        "Upload Image"
+                      )}
                     </h3>
                   </>
                 )}
