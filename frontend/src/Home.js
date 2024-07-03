@@ -155,9 +155,9 @@ export default function Home() {
                 ) : (
                   <>
                     <i className="bx bxs-cloud-upload icon"></i>
-                    <h3>
+                    <h3 >
                       {noMatch
-                        ? "Sorry, no images match your request"
+                        ? <h5 className='match'><strong>Sorry, No images match request.</strong></h5>
                         : "Upload Image"}
                     </h3>
                   </>
