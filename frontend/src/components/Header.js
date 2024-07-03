@@ -69,9 +69,14 @@ export default function Header() {
           </>
         ) : (
           <>
-            <div className="acc" onClick={handleProfileClick}>
+            <Link
+              to="/src/Profile.js"
+              className="acc"
+              title="Account"
+              onClick={handleProfileClick}
+            >
               Hi, {firstName}
-            </div>
+            </Link>
             <div to="/home" className="reg-nav" onClick={logout}>
               Logout
             </div>
