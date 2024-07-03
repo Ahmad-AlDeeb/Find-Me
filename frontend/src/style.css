@@ -57,7 +57,8 @@ body {
   outline: none;
 }
 .register input {
-  width: calc(100% - 20px);
+  width: 80%;
+  margin-left: 50px;
   background: white;
   color: black;
   padding: 2px;

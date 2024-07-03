@@ -93,7 +93,9 @@ export default function SignUp() {
                 </Link>
               </div>
             </div>
-            <label htmlFor="Fname">First Name:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="Fname">
+              First Name:
+            </label>
             <input
               id="Fname"
               type="text"
@@ -103,7 +105,9 @@ export default function SignUp() {
             />
             {accept && errors.Fname && <p className="error">{errors.Fname}</p>}
 
-            <label htmlFor="Lname">Last Name:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="Lname">
+              Last Name:
+            </label>
             <input
               id="Lname"
               type="text"
@@ -113,7 +117,9 @@ export default function SignUp() {
             />
             {accept && errors.Lname && <p className="error">{errors.Lname}</p>}
 
-            <label htmlFor="email">Email:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="email">
+              Email:
+            </label>
             <input
               id="email"
               type="email"
@@ -126,7 +132,9 @@ export default function SignUp() {
               <p className="error">Email is already taken</p>
             )}
 
-            <label htmlFor="password">Password:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="password">
+              Password:
+            </label>
             <input
               id="password"
               type="password"
@@ -138,7 +146,9 @@ export default function SignUp() {
               <p className="error">{errors.password}</p>
             )}
 
-            <label htmlFor="repassword">Confirm Password:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="repassword">
+              Confirm Password:
+            </label>
             <input
               id="repassword"
               type="password"
@@ -150,7 +160,9 @@ export default function SignUp() {
               <p className="error">{errors.repassword}</p>
             )}
 
-            <label htmlFor="phone">Phone Number:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="phone">
+              Phone Number:
+            </label>
             <input
               id="phone"
               type="text"
@@ -160,7 +172,9 @@ export default function SignUp() {
             />
             {accept && errors.phone && <p className="error">{errors.phone}</p>}
 
-            <label htmlFor="state">State:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="state">
+              State:
+            </label>
             <input
               id="state"
               type="text"
@@ -170,7 +184,9 @@ export default function SignUp() {
             />
             {accept && errors.state && <p className="error">{errors.state}</p>}
 
-            <label htmlFor="city">City:</label>
+            <label style={{ marginLeft: "50px" }} htmlFor="city">
+              City:
+            </label>
             <input
               id="city"
               type="text"
