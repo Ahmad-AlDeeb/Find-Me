@@ -14,6 +14,7 @@ export default function Home() {
   const [imgName, setImgName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
+  const [noMatch, setNoMatch] = useState(false);
   const navigate = useNavigate();
 
   const handleSelectImageClick = () => {
@@ -26,6 +27,7 @@ export default function Home() {
     reader.onload = () => {
       setImgSrc(reader.result);
       setImgName(image.name);
+      setNoMatch(false);
     };
     reader.readAsDataURL(image);
   };
@@ -70,14 +72,23 @@ export default function Home() {
           },
         }
       );
-      console.log("Image uploaded successfully:", response);
-      toast.success("Image uploaded successfully!");
-      navigate("/confirm", {
-        state: { image: response.data.data.image, user: response.data.user },
-      });
+
+      const percentage = response.data.data.percentage;
+      if (percentage < 30) {
+        setNoMatch(true);
+      } else {
+        toast.success("Image uploaded successfully!");
+        navigate("/confirm", {
+          state: {
+            image: response.data.data.image,
+            user: response.data.user,
+            percentage: percentage,
+          },
+        });
+      }
     } catch (error) {
       console.error("Error uploading image:", error);
-      toast.error("Error uploading image.");
+      setNoMatch(true);
     } finally {
       setIsLoading(false);
     }
@@ -139,12 +150,16 @@ export default function Home() {
                 onChange={handleInputChange}
               />
               <div className="img-area" data-img={imgName} ref={imgAreaRef}>
-                {imgSrc ? (
+                {imgSrc && !noMatch ? (
                   <img src={imgSrc} alt="Uploaded" />
                 ) : (
                   <>
                     <i className="bx bxs-cloud-upload icon"></i>
-                    <h3>Upload Image</h3>
+                    <h3>
+                      {noMatch
+                        ? "Sorry, no images match your request"
+                        : "Upload Image"}
+                    </h3>
                   </>
                 )}
               </div>

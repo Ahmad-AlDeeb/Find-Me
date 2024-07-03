@@ -17,6 +17,10 @@ export default function Confirm() {
       setShowSorryMessage(true);
     }
   };
+
+  const roundedSimilarity =
+    state && state.percentage !== null ? Math.round(state.percentage) : null;
+
   return (
     <div>
       <Header />
@@ -82,6 +86,14 @@ export default function Confirm() {
               ) : (
                 <form>
                   <div className="text">
+                    <Link className="match">
+                      <h2>
+                        Match :{" "}
+                        {roundedSimilarity !== null
+                          ? `${roundedSimilarity}%`
+                          : "Loading..."}
+                      </h2>
+                    </Link>
                     <h2>This is the best match we could find.</h2>
                     <h2>
                       <strong>Is he/she the same child?</strong>
