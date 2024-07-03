@@ -127,7 +127,7 @@ class ChildReportView(generics.CreateAPIView):
             # Check if database is emtpy or if there are no similar enough image
             print(image_name)
             print(percentage)
-            if not image_name or percentage < 60:
+            if not image_name or percentage < 30:
                 return Response({"message": "Sorry, no images match your request"}, status=status.HTTP_404_NOT_FOUND)
 
             # Get the child instance of the image found in database
