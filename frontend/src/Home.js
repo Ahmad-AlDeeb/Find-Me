@@ -108,7 +108,7 @@ export default function Home() {
             style={{ flex: "0 0 45%", marginRight: "20px" }}
           >
             <form>
-              <h2 className="title-home">Please select an option.</h2>
+              <h2 className="title-home">Please select person status</h2>
               <div className="options-home">
                 <label
                   className={`custom-radio ${
@@ -121,7 +121,7 @@ export default function Home() {
                     checked={selectedOption === "L"}
                     onChange={handleOptionChange}
                   />
-                  Lost Child
+                  Lost
                 </label>
                 <label
                   className={`custom-radio ${
@@ -134,7 +134,7 @@ export default function Home() {
                     checked={selectedOption === "F"}
                     onChange={handleOptionChange}
                   />
-                  Found Child
+                  Found
                 </label>
               </div>
             </form>

@@ -88,7 +88,7 @@ export default function Confirm() {
                   <div className="text">
                     <div className="match">
                       <h2>
-                        Match :{" "}
+                        Match:{" "}
                         {roundedSimilarity !== null
                           ? `${roundedSimilarity}%`
                           : "Loading..."}
@@ -96,7 +96,7 @@ export default function Confirm() {
                     </div>
                     <h2>This is the best match we could find.</h2>
                     <h2>
-                      <strong>Is he/she the same child?</strong>
+                      <strong>Is he/she the same person?</strong>
                     </h2>
                   </div>
                   <div className="buttons-home">
