@@ -23,13 +23,15 @@ export default function Home() {
 
   const handleInputChange = (event) => {
     const image = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImgSrc(reader.result);
-      setImgName(image.name);
-      setNoMatch(false);
-    };
-    reader.readAsDataURL(image);
+    if (image) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImgSrc(reader.result);
+        setImgName(image.name);
+        setNoMatch(false);
+      };
+      reader.readAsDataURL(image);
+    }
   };
 
   const handleOptionChange = (event) => {
