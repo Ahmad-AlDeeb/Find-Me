@@ -1,5 +1,7 @@
 import os
+from math import ceil
 
+from django.db.models.functions import Ceil
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
@@ -127,7 +129,7 @@ class ChildReportView(generics.CreateAPIView):
             # Check if database is emtpy or if there are no similar enough image
             print(image_name)
             print(percentage)
-            if not image_name or percentage < 30:
+            if not image_name or ceil(percentage) < 40:
                 return Response({"message": "Sorry, no images match your request"}, status=status.HTTP_404_NOT_FOUND)
 
             # Get the child instance of the image found in database
