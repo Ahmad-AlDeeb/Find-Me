@@ -1,38 +1,21 @@
-# 👤 User Story 
-## As `Parent` Who Lost My Child I Want To
-- Upload my child photo.
-- Get location and phone number of `Helper` who found him.
-## As `Helper` Who Found Lost Child I Want To
-- Upload the lost child photo.
-- Get location and phone number of `Parent` who lost his child.
-# 🔵Endpoints
-## Frontend
-- Login page: `GET localhost:3000/login`.
-- Create account page: `GET localhost:3000/register`.
-- Home page: `GET localhost:3000`.
-- Report page: `GET localhost:3000/report`.
-- Result page: `GET localhost:3000/result`.
-## Backend
-- Login: `POST localhost:8000/login/`.
-- Create account: `POST localhost:8000/register/`.
-- Send report: `POST localhost:8000/report/`.
-- Get all users: `GET localhost:8000/users/`.
-- Get one user: `GET localhost:8000/users/<id>/`.
-# 🟡Models
-- `user`:
-	- `id`.
-	- `first_name`.
-	- `last_name`.
-	- `email`.
- 	- `password`. 
-	- `phone`.
-	- `state`.
-	- `city`.
-- `child`:
-	- `id`.
-	- `user_id`.
-	- `img_url`.
-	- `status`.
- 	- `is_found`.
+# ⚡ Starting Up
+1. Clone the repository: `git clone https://github.com/Ahmad-AlDeeb/Find-Me`
+2. Change directory to backend `cd ./backend/`
+3. Create virtual environment: `python -m venv venv`
+4. Activate virtual environment:
+   - Windows: `venv/Scripts/activate`
+   - Linux: `source venv/bin/activate`
+5. Install Django dependencies:
+```
+pip install django faker djangorestframework django-cors-headers opencv-python-headless numpy scikit-learn facenet-pytorch
+```
+6. Make migrations `python manage.py makemigrations`
+7. Make migrations for core app `python manage.py makemigrations core`
+8. Apply migrations `python manage.py migrate`
+9. Create super user `python manage.py createsuperuser`
+10. Run Django server `python manage.py runserver`
+11. Open new terminal and change directory to frontend: `cd ./frontend/`
+12. Install React dependencies `npm install`
+13. Run React app `npm run start`
 # 🎬 Demo
 https://github.com/Ahmad-AlDeeb/Find-Me/assets/122436546/9dd25694-c0fe-497d-892a-fa2a9905f2e2
