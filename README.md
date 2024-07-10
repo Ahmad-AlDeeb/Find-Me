@@ -1,12 +1,11 @@
+
 # 👤 User Story 
 ## As `Parent` Who Lost My Child I Want To
 - Upload my child photo.
-- Get location and phone number of `Helper` who found him (success case✅).
-- Receive notification when my child is found (failure case ❌).
+- Get location and phone number of `Helper` who found him.
 ## As `Helper` Who Found Lost Child I Want To
 - Upload the lost child photo.
-- Get location and phone number of `Parent` who lost his child (success case✅).
-- Receive notification when the lost child's parent is found (failure case ❌).
+- Get location and phone number of `Parent` who lost his child.
 # 🔵Endpoints
 ## Frontend
 - Login page: `GET localhost:3000/login`.
@@ -36,9 +35,5 @@
 	- `img_url`.
 	- `status`.
  	- `is_found`.
-# 🎬 Demos
-- Create new account and log in (admin & frontend)
-- View & Update profile (admin & frontend)
-- Delete account (admin & frontend)
-- Report lost child with NO/YES answer
-- Report found child with NO/YES answer
+# 🎬 Demo
+[Uploading Web Demo 40%.mp4…](https://github.com/Ahmad-AlDeeb/Find-Me/assets/122436546/e8fd743a-d386-4332-8471-248cdd1192ae)
